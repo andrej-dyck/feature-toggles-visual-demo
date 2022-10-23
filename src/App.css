@@ -6,6 +6,7 @@
   display: flex;
   flex-flow: column;
   margin: 20px auto;
+  max-width: 1600px;
 }
 
 .App-header {
