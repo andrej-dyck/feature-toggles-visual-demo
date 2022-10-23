@@ -2,6 +2,7 @@ import { Button, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import './Cart.css'
+import ContentTitle from '../Layouts/ContentTitle'
 
 const Cart: React.FC = () => {
   // const { cart } = useContext(CartContext);
@@ -11,7 +12,7 @@ const Cart: React.FC = () => {
 
   return (
     <div className="Cart">
-      <Typography variant="h5">Your Cart</Typography>
+      <ContentTitle text="Shopping Cart" />
       <Typography variant="body2" color="textSecondary">
         ({cartSize} {cartSize === 1 ? 'item' : 'items'})
       </Typography>

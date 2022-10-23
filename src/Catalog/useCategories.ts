@@ -3,4 +3,7 @@ import { Query } from '../api/Query'
 import { CatalogStore, Category } from './CatalogStore'
 
 export const useCategories = (store: CatalogStore): Query<ReadonlyArray<Category>> =>
-  useQuery<ReadonlyArray<Category>>(['categories'], () => store.allCategories())
+  useQuery(['categories'], () => store.allCategories())
+
+export const useCategoryById = (store: CatalogStore, categoryId: string): Query<Category | undefined> =>
+  useQuery(['categories', categoryId], () => store.categoryById(categoryId))
