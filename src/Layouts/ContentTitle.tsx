@@ -15,9 +15,11 @@ const ContentTitle: React.FC<{
   if (!outputText) return (<></>)
 
   return (
-    <Typography variant="h5" marginBottom={marginBottom ?? 1} color="textSecondary">
-      {outputText}
-    </Typography>
+    <div className="centered">
+      <Typography variant="h5" marginBottom={marginBottom ?? 1} color="textSecondary">
+        {outputText}
+      </Typography>
+    </div>
   )
 }
 

@@ -1,14 +1,14 @@
-import { Menu as MenuIcon } from '@mui/icons-material'
-import { AppBar, Avatar, IconButton, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import CartIcon from '../Cart/CartIcon'
+import BurgerMenu from './BurgerMenu'
 import './Header.css'
 
 const Header: React.FC = () => (
   <AppBar position="sticky" className="Header">
     <Toolbar>
-      <Menu />
+      <BurgerMenu />
       <Title />
       <div className="spacing"></div>
       <CartIcon />
@@ -23,12 +23,6 @@ const Title: React.FC = () => (
       Shop
     </Link>
   </Typography>
-)
-
-const Menu: React.FC = () => (
-  <IconButton edge="start" color="inherit" aria-label="menu" disabled={true}>
-    <MenuIcon />
-  </IconButton>
 )
 
 export default Header

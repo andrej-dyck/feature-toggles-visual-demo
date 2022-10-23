@@ -3,6 +3,9 @@ body {
   font-family: 'Roboto', 'Noto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #fafafa;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 code {
