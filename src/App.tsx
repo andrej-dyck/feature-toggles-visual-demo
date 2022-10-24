@@ -1,10 +1,10 @@
 import { CircularProgress } from '@mui/material'
 import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { FakeCatalogStore } from './api/FakeCategoryStore'
+import { FakeProductStore } from './api/FakeProductStore'
 import './App.css'
-import { FakeCatalogStore } from './Catalog/CatalogStore'
 import Header from './Navigation/Header'
-import { FakeProductStore } from './Products/ProductStore'
 
 const Catalog = React.lazy(() => import('./Catalog/Catalog'))
 const CategoryTitle = React.lazy(() => import('./Catalog/CategoryTitle'))
