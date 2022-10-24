@@ -1,17 +1,23 @@
+import { CreditCard } from '@mui/icons-material'
 import { Button, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import ContentTitle from '../Layouts/ContentTitle'
 import { Currency, formatCurrency } from '../Products/Currency'
-import './Cart.css'
+import './CartSummary.css'
 
-const Cart: React.FC = () => {
+const CartSummary: React.FC = () => {
   // const { cart } = useContext(CartContext);
   // const cartSize = StoreData.getCartSize(cart);
   const navigate = useNavigate()
 
   const cartSize = ((): number => 0)()
   const total: Currency = { value: 0, code: 'EUR' }
+
+  const handleCheckout = () => {
+    const orderId = crypto.randomUUID()
+    navigate(`/confirmation/${orderId}`)
+  }
 
   return (
     <div className="Cart">
@@ -31,12 +37,15 @@ const Cart: React.FC = () => {
         </span>
       </div>
       <div className="buttons">
-        <Button variant="contained" onClick={() => navigate('/checkout')}>
-          Checkout
+        <Button variant="contained"
+                startIcon={<CreditCard />}
+                onClick={handleCheckout}
+        >
+          Buy now
         </Button>
       </div>
     </div>
   )
 }
 
-export default Cart
+export default CartSummary

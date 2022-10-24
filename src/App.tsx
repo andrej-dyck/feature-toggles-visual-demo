@@ -10,7 +10,8 @@ const Catalog = React.lazy(() => import('./Catalog/Catalog'))
 const CategoryTitle = React.lazy(() => import('./Catalog/CategoryTitle'))
 const ListCategory = React.lazy(() => import('./Products/ListCategory'))
 const ProductDetails = React.lazy(() => import('./Products/ProductDetails'))
-const Cart = React.lazy(() => import('./Cart/Cart'))
+const CartSummary = React.lazy(() => import('./Cart/CartSummary'))
+const Confirmation = React.lazy(() => import('./Cart/Confirmation'))
 
 function App() {
   const catalogStore = new FakeCatalogStore()
@@ -40,7 +41,12 @@ function App() {
             } />
             <Route path="/cart" element={
               <React.Suspense fallback={<Loading />}>
-                <Cart />
+                <CartSummary />
+              </React.Suspense>
+            } />
+            <Route path="/confirmation/:orderId" element={
+              <React.Suspense fallback={<Loading />}>
+                <Confirmation />
               </React.Suspense>
             } />
           </Routes>

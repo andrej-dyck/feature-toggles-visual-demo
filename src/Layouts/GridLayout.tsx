@@ -7,7 +7,7 @@ const GridLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
     <Grid container
           justifyContent="center"
           alignItems="flex-start"
-          spacing={2}
+          spacing={1}
     >
       {items.map((c, i) => (<Grid item key={i}>{c}</Grid>))}
     </Grid>
