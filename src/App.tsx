@@ -9,6 +9,7 @@ import Header from './Navigation/Header'
 const Catalog = React.lazy(() => import('./Catalog/Catalog'))
 const CategoryTitle = React.lazy(() => import('./Catalog/CategoryTitle'))
 const ListCategory = React.lazy(() => import('./Products/ListCategory'))
+const ProductDetails = React.lazy(() => import('./Products/ProductDetails'))
 const Cart = React.lazy(() => import('./Cart/Cart'))
 
 function App() {
@@ -30,6 +31,11 @@ function App() {
               <React.Suspense fallback={<Loading />}>
                 <CategoryTitle store={catalogStore} />
                 <ListCategory store={productStore} />
+              </React.Suspense>
+            } />
+            <Route path="/product/:sku" element={
+              <React.Suspense fallback={<Loading />}>
+                <ProductDetails store={productStore} />
               </React.Suspense>
             } />
             <Route path="/cart" element={

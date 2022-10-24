@@ -7,10 +7,11 @@ const ContentTitle: React.FC<{
   marginBottom?: number
 }> = ({ text, marginBottom }) => {
 
-  const outputText = typeof text === 'string' ? text
-    : text.status === 'loading' ? (<Skeleton variant="rounded" width={200} className="centered" />)
-      : text.status === 'success' ? text.data ?? ''
-        : ''
+  const outputText =
+    typeof text === 'string' ? text
+      : text.status === 'loading' ? (<Skeleton variant="rounded" width={200} className="centered" />)
+        : text.status === 'success' ? text.data ?? ''
+          : ''
 
   if (!outputText) return (<></>)
 

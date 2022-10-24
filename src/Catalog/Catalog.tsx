@@ -4,20 +4,19 @@ import { Link } from 'react-router-dom'
 import GridLayout from '../Layouts/GridLayout'
 import GridSkeleton from '../Layouts/GridSkeleton'
 import './Catalog.css'
-import { CatalogStore, Category } from './CatalogStore'
-import { useCategories } from './useCategories'
+import { CatalogStore, Category, useCategories } from './CatalogStore'
 
 const Catalog: React.FC<{ store: CatalogStore }> = ({ store }) => {
-  const { status, data: categories } = useCategories(store)
-
-  if (status === 'loading') return (
-    <GridSkeleton n={4} width={600} height={244} />
-  )
+  const { data: categories, status } = useCategories(store)
 
   if (status === 'success' && (categories?.length ?? 0) > 0) return (
     <GridLayout>
       {categories?.map(c => (<CategoryCard category={c} key={c.id} />))}
     </GridLayout>
+  )
+
+  if (status === 'loading') return (
+    <GridSkeleton n={4} width={600} height={244} />
   )
 
   return (
@@ -29,7 +28,7 @@ const Catalog: React.FC<{ store: CatalogStore }> = ({ store }) => {
 
 const CategoryCard: React.FC<{ category: Category }> = ({ category }) =>
   <Link to={`/list/${category.id}`} className="category-link">
-    <Card className="category-card" elevation={5}>
+    <Card className="category-card" elevation={1}>
       <CardMedia image={categoryImgSrc(category)}
                  title={category.title}
                  className="category-image"

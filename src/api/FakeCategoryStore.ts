@@ -1,17 +1,22 @@
 import { CatalogStore, Category } from '../Catalog/CatalogStore'
 
 export class FakeCatalogStore implements CatalogStore {
-  constructor(private fakeDelayInMs = 200) {}
+  constructor(
+    private readonly fakeDelayInMs = 200,
+    private readonly categories = categoryStubs
+  ) {}
 
   allCategories(): Promise<ReadonlyArray<Category>> {
     return new Promise(
-      resolve => setTimeout(() => resolve(categoryStubs), this.fakeDelayInMs)
+      resolve => setTimeout(() => resolve(this.categories), this.fakeDelayInMs)
     )
   }
 
   categoryById(categoryId: string): Promise<Category | undefined> {
-    return this.allCategories().then(
-      categories => categories.find(c => c.id === categoryId)
+    return new Promise(
+      resolve => setTimeout(() => resolve(
+        this.categories.find(c => c.id === categoryId)
+      ), this.fakeDelayInMs/2)
     )
   }
 }

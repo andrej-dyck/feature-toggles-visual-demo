@@ -1,8 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import ContentTitle from '../Layouts/ContentTitle'
-import { CatalogStore } from './CatalogStore'
-import { useCategoryById } from './useCategories'
+import { CatalogStore, useCategoryById } from './CatalogStore'
 
 const CategoryTitle: React.FC<{
   store: CatalogStore

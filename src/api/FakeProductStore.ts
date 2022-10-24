@@ -1,16 +1,27 @@
-import { Product, ProductStore } from '../Products/ProductStore'
+import { DetailedProduct, Product, ProductStore } from '../Products/ProductStore'
 
 export class FakeProductStore implements ProductStore {
-  constructor(private fakeDelayInMs = 250) {}
+  constructor(
+    private readonly fakeDelayInMs = 250,
+    private readonly products = productStubs
+  ) {}
 
-  async inCategory(categoryId: string): Promise<ReadonlyArray<Product>> {
+  inCategory(categoryId: string): Promise<ReadonlyArray<Product>> {
     return new Promise(
-      resolve => setTimeout(() => resolve(productStubs[categoryId] ?? []), this.fakeDelayInMs)
+      resolve => setTimeout(() => resolve(this.products[categoryId] ?? []), this.fakeDelayInMs)
+    )
+  }
+
+  bySku(sku: string): Promise<DetailedProduct | undefined> {
+    return new Promise(
+      resolve => setTimeout(() => resolve(
+        Object.values(this.products).flat().find(p => p.sku === sku)
+      ), this.fakeDelayInMs / 2)
     )
   }
 }
 
-const productStubs: Record<string, ReadonlyArray<Product>> = {
+const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
   'mens-outerwear': [{
     sku: '10-15068',
     title: 'Men\'s Tech Shell Full-Zip',
