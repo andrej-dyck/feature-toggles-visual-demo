@@ -6,26 +6,18 @@ import ContentTitle from '../Layouts/ContentTitle'
 import './BurgerMenu.css'
 
 const BurgerMenu: React.FC = () => {
-  const [drawerState, setDrawerState] = useState<'open' | 'closed'>('closed')
-  const toggleDrawer = (state: 'open' | 'closed') =>
-    (event: React.KeyboardEvent | React.MouseEvent) => {
-      if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
-        return
-      }
-
-      setDrawerState(state)
-    }
+  const [drawerState, toggleDrawer] = useState<'open' | 'closed'>('closed')
 
   const location = useLocation()
-  useEffect(() => { setDrawerState('closed') }, [location])
+  useEffect(() => { toggleDrawer('closed') }, [location])
 
   return (<>
-    <IconButton edge="start" color="inherit" aria-label="menu" onClick={toggleDrawer('open')}>
+    <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => toggleDrawer('open')}>
       <MenuIcon />
     </IconButton>
     <Drawer anchor="left"
             open={drawerState === 'open'}
-            onClose={toggleDrawer('closed')}
+            onClose={() => toggleDrawer('closed')}
     >
       <NavigationMenu items={[
         { title: 'Home', link: '/', icon: (<HomeOutlined />) },
