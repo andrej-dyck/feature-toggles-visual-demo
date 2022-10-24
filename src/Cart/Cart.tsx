@@ -1,14 +1,17 @@
 import { Button, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import './Cart.css'
 import ContentTitle from '../Layouts/ContentTitle'
+import { Currency, formatCurrency } from '../Products/Currency'
+import './Cart.css'
 
 const Cart: React.FC = () => {
   // const { cart } = useContext(CartContext);
   // const cartSize = StoreData.getCartSize(cart);
+  const navigate = useNavigate()
+
   const cartSize = ((): number => 0)()
-  const navigate = useNavigate();
+  const total: Currency = { value: 0, code: 'EUR' }
 
   return (
     <div className="Cart">
@@ -24,8 +27,7 @@ const Cart: React.FC = () => {
       <div className="total">
         <span className="label">Total:</span>
         <span className="amount">
-          0.00 €
-          {/*${cart.reduce((total, cartItem) => total + cartItem.quantity * cartItem.item.price, 0).toFixed(2)}*/}
+          {formatCurrency(total)}
         </span>
       </div>
       <div className="buttons">
@@ -34,7 +36,7 @@ const Cart: React.FC = () => {
         </Button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Cart;
+export default Cart
