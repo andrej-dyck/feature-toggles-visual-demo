@@ -2,38 +2,42 @@ import { CreditCard } from '@mui/icons-material'
 import { Button, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { CartActions } from '../api/LocalCart'
 import ContentTitle from '../Layouts/ContentTitle'
-import { Currency, formatCurrency } from '../Products/Currency'
+import { formatCurrency } from '../Products/Currency'
+import { Cart, CartItem, itemPrice, totalPrice, totalCount } from './Cart'
 import './CartSummary.css'
 
-const CartSummary: React.FC = () => {
-  // const { cart } = useContext(CartContext);
-  // const cartSize = StoreData.getCartSize(cart);
+const CartSummary: React.FC<{
+  cart: Cart,
+  cartActions: CartActions
+}> = ({ cart, cartActions }) => {
   const navigate = useNavigate()
 
-  const cartSize = ((): number => 0)()
-  const total: Currency = { value: 0, code: 'EUR' }
+  const numberOfItems = totalCount(cart)
+  const cartPrice = totalPrice(cart)
 
   const handleCheckout = () => {
-    const orderId = crypto.randomUUID()
+    const orderId = cart.id
     navigate(`/confirmation/${orderId}`)
+    cartActions.newCart()
   }
 
   return (
     <div className="Cart">
       <ContentTitle text="Shopping Cart" />
       <Typography variant="body2" color="textSecondary">
-        ({cartSize} {cartSize === 1 ? 'item' : 'items'})
+        ({numberOfItems} {numberOfItems === 1 ? 'item' : 'items'})
       </Typography>
       <div className="cart-items">
-        {/*{cart.map((item, index) => (*/}
-        {/*  <CartItem key={index} cartItem={item} />*/}
-        {/*))}*/}
+        {cart.items.map((item, index) => (
+          <ItemCard key={index} item={item} />
+        ))}
       </div>
       <div className="total">
         <span className="label">Total:</span>
         <span className="amount">
-          {formatCurrency(total)}
+          {formatCurrency(cartPrice)}
         </span>
       </div>
       <div className="buttons">
@@ -47,5 +51,8 @@ const CartSummary: React.FC = () => {
     </div>
   )
 }
+
+const ItemCard: React.FC<{ item: CartItem }> = ({item}) =>
+  <div>{item.title} - {item.size} - {item.quantity}x - {formatCurrency(itemPrice(item))}</div>
 
 export default CartSummary

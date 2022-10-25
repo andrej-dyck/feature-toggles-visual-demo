@@ -1,11 +1,13 @@
-import { HomeOutlined, Menu as MenuIcon, ShoppingCartOutlined } from '@mui/icons-material'
+import { HomeOutlined, Menu as MenuIcon } from '@mui/icons-material'
 import { Drawer, IconButton, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { Cart } from '../Cart/Cart'
+import CartIcon from '../Cart/CartIcon'
 import ContentTitle from '../Layouts/ContentTitle'
 import './BurgerMenu.css'
 
-const BurgerMenu: React.FC = () => {
+const BurgerMenu: React.FC<{ cart: Cart }> = ({ cart }) => {
   const [drawerState, toggleDrawer] = useState<'open' | 'closed'>('closed')
 
   const location = useLocation()
@@ -21,7 +23,7 @@ const BurgerMenu: React.FC = () => {
     >
       <NavigationMenu items={[
         { title: 'Home', link: '/', icon: (<HomeOutlined />) },
-        { title: 'Cart', link: '/cart', icon: (<ShoppingCartOutlined />) }
+        { title: 'Cart', link: '/cart', icon: (<CartIcon cart={cart} />) }
       ]} />
     </Drawer>
   </>)

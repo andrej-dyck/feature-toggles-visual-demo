@@ -1,17 +1,18 @@
 import { AppBar, Avatar, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CartIcon from '../Cart/CartIcon'
+import { Cart } from '../Cart/Cart'
+import { LinkedCartIcon } from '../Cart/CartIcon'
 import BurgerMenu from './BurgerMenu'
 import './Header.css'
 
-const Header: React.FC = () => (
+const Header: React.FC<{ cart: Cart }> = ({cart}) => (
   <AppBar position="sticky" className="Header">
     <Toolbar>
-      <BurgerMenu />
+      <BurgerMenu cart={cart} />
       <Title />
       <div className="spacing"></div>
-      <CartIcon />
+      <LinkedCartIcon cart={cart} />
     </Toolbar>
   </AppBar>
 )

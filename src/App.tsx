@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { FakeCatalogStore } from './api/FakeCategoryStore'
 import { FakeProductStore } from './api/FakeProductStore'
 import './App.css'
+import { useCart } from './api/LocalCart'
 import Header from './Navigation/Header'
 
 const Catalog = React.lazy(() => import('./Catalog/Catalog'))
@@ -16,11 +17,12 @@ const Confirmation = React.lazy(() => import('./Cart/Confirmation'))
 function App() {
   const catalogStore = new FakeCatalogStore()
   const productStore = new FakeProductStore()
+  const { cart, cartActions } = useCart()
 
   return (
     <div className="App">
       <Router>
-        <Header />
+        <Header cart={cart} />
         <div className="content">
           <Routes>
             <Route path="/" element={
@@ -36,12 +38,12 @@ function App() {
             } />
             <Route path="/product/:sku" element={
               <React.Suspense fallback={<Loading />}>
-                <ProductDetails store={productStore} />
+                <ProductDetails store={productStore} cartActions={cartActions} />
               </React.Suspense>
             } />
             <Route path="/cart" element={
               <React.Suspense fallback={<Loading />}>
-                <CartSummary />
+                <CartSummary cart={cart} cartActions={cartActions} />
               </React.Suspense>
             } />
             <Route path="/confirmation/:orderId" element={

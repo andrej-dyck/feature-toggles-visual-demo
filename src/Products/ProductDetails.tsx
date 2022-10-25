@@ -2,12 +2,16 @@ import { ShoppingCart } from '@mui/icons-material'
 import { Button, FormControl, Grid, InputLabel, MenuItem, Select, Skeleton, Stack, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { CartActions } from '../api/LocalCart'
 import { formatCurrency } from './Currency'
 import './ProductDetails.css'
 import { Product, ProductStore, useProduct } from './ProductStore'
 import { availableSizes, Size } from './Size'
 
-const ProductDetails: React.FC<{ store: ProductStore }> = ({ store }) => {
+const ProductDetails: React.FC<{
+  store: ProductStore,
+  cartActions: CartActions
+}> = ({ store, cartActions }) => {
   const { sku } = useParams()
   const { data: product, status } = useProduct(store, sku ?? '')
   const availableQuantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const
@@ -15,8 +19,8 @@ const ProductDetails: React.FC<{ store: ProductStore }> = ({ store }) => {
   const [size, chooseSize] = useState<Size>('M')
   const [quantity, chooseQuantity] = useState<number>(1)
 
-  const addToCart = (p: Product, s: Size, quantity: number) => () => {
-    console.log('add to cart', p, s, quantity)
+  const addToCart = (p: Product, size: Size, quantity: number) => () => {
+    cartActions.addItem({ ...p, size, quantity })
   }
 
   if (status === 'success' && !!product) return (
