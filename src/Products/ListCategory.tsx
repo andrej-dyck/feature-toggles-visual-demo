@@ -11,11 +11,12 @@ import {
 } from '@mui/material'
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { appRoutes } from '../AppRoutes'
 import GridLayout from '../Layouts/GridLayout'
 import GridSkeleton from '../Layouts/GridSkeleton'
 import './ListCategory.css'
 import { formatCurrency } from './Currency'
-import { Product, ProductStore, useProductsInCategory } from './ProductStore'
+import { Product, productImgSrc, ProductStore, useProductsInCategory } from './ProductStore'
 
 const ListCategory: React.FC<{ store: ProductStore }> = ({ store }) => {
   const { categoryId } = useParams()
@@ -43,16 +44,16 @@ const ProductCard: React.FC<{ product: Product, addToCartBtn?: boolean }> = ({ p
 
   return (
     <Card elevation={1} className="product-card">
-      <CardActionArea onClick={() => navigate(`/product/${product.sku}`)}>
+      <CardActionArea onClick={() => navigate(appRoutes.product(product.sku))}>
         <CardMedia
           component="img"
           alt={product.title}
-          image={productImgSrc(product)}
+          image={productImgSrc(product).medium()}
           className="card-image"
         />
         <CardContent className="card-content">
           <Typography variant="body2" color="textSecondary">{product.sku}</Typography>
-          {product.title}
+          <Typography variant="body1">{product.title}</Typography>
         </CardContent>
       </CardActionArea>
       <CardActions className="card-actions">
@@ -72,7 +73,5 @@ const ProductCard: React.FC<{ product: Product, addToCartBtn?: boolean }> = ({ p
     </Card>
   )
 }
-
-const productImgSrc = (product: Product) => `/images/products/${product.sku}B.jpg`
 
 export default ListCategory

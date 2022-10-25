@@ -1,6 +1,7 @@
 import { Card, CardContent, CardMedia, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { appRoutes } from '../AppRoutes'
 import GridLayout from '../Layouts/GridLayout'
 import GridSkeleton from '../Layouts/GridSkeleton'
 import './Catalog.css'
@@ -27,7 +28,7 @@ const Catalog: React.FC<{ store: CatalogStore }> = ({ store }) => {
 }
 
 const CategoryCard: React.FC<{ category: Category }> = ({ category }) =>
-  <Link to={`/list/${category.id}`} className="category-link">
+  <Link to={appRoutes.category(category.id)} className="category-link">
     <Card className="category-card" elevation={1}>
       <CardMedia image={categoryImgSrc(category)}
                  title={category.title}

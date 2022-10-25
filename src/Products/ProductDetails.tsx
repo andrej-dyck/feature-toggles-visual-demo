@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { CartActions } from '../api/LocalCart'
 import { formatCurrency } from './Currency'
 import './ProductDetails.css'
-import { Product, ProductStore, useProduct } from './ProductStore'
+import { Product, productImgSrc, ProductStore, useProduct } from './ProductStore'
 import { availableSizes, Size } from './Size'
 
 const ProductDetails: React.FC<{
@@ -26,7 +26,7 @@ const ProductDetails: React.FC<{
   if (status === 'success' && !!product) return (
     <ProductLayout
       image={<>
-        <img src={productImgSrc(product)} alt={product.title} />
+        <img src={productImgSrc(product).large()} alt={product.title} />
       </>}
       product={<>
         <div>
@@ -87,8 +87,6 @@ const ProductDetails: React.FC<{
     </Typography>
   )
 }
-
-const productImgSrc = (product: Product) => `/images/products/${product.sku}A.jpg`
 
 const unescapeHtml = (html: string) => {
   const elem = document.createElement('textarea')

@@ -1,18 +1,11 @@
-import { CircularProgress } from '@mui/material'
 import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { FakeCatalogStore } from './api/FakeCategoryStore'
 import { FakeProductStore } from './api/FakeProductStore'
-import './App.css'
 import { useCart } from './api/LocalCart'
+import './App.css'
 import Header from './Navigation/Header'
-
-const Catalog = React.lazy(() => import('./Catalog/Catalog'))
-const CategoryTitle = React.lazy(() => import('./Catalog/CategoryTitle'))
-const ListCategory = React.lazy(() => import('./Products/ListCategory'))
-const ProductDetails = React.lazy(() => import('./Products/ProductDetails'))
-const CartSummary = React.lazy(() => import('./Cart/CartSummary'))
-const Confirmation = React.lazy(() => import('./Cart/Confirmation'))
+import AppRoutes from './AppRoutes'
 
 function App() {
   const catalogStore = new FakeCatalogStore()
@@ -24,42 +17,16 @@ function App() {
       <Router>
         <Header cart={cart} />
         <div className="content">
-          <Routes>
-            <Route path="/" element={
-              <React.Suspense fallback={<Loading />}>
-                <Catalog store={catalogStore} />
-              </React.Suspense>
-            } />
-            <Route path="/list/:categoryId" element={
-              <React.Suspense fallback={<Loading />}>
-                <CategoryTitle store={catalogStore} />
-                <ListCategory store={productStore} />
-              </React.Suspense>
-            } />
-            <Route path="/product/:sku" element={
-              <React.Suspense fallback={<Loading />}>
-                <ProductDetails store={productStore} cartActions={cartActions} />
-              </React.Suspense>
-            } />
-            <Route path="/cart" element={
-              <React.Suspense fallback={<Loading />}>
-                <CartSummary cart={cart} cartActions={cartActions} />
-              </React.Suspense>
-            } />
-            <Route path="/confirmation/:orderId" element={
-              <React.Suspense fallback={<Loading />}>
-                <Confirmation />
-              </React.Suspense>
-            } />
-          </Routes>
+          <AppRoutes
+            catalogStore={catalogStore}
+            productStore={productStore}
+            cart={cart}
+            cartActions={cartActions}
+          />
         </div>
       </Router>
     </div>
   )
 }
-
-const Loading: React.FC = () => (
-  <CircularProgress color="secondary" className="centered" />
-)
 
 export default App

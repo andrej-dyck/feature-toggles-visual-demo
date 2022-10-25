@@ -1,6 +1,7 @@
 import { AppBar, Avatar, Toolbar, Typography } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { appRoutes } from '../AppRoutes'
 import { Cart } from '../Cart/Cart'
 import { LinkedCartIcon } from '../Cart/CartIcon'
 import BurgerMenu from './BurgerMenu'
@@ -19,7 +20,7 @@ const Header: React.FC<{ cart: Cart }> = ({cart}) => (
 
 const Title: React.FC = () => (
   <Typography variant="h6">
-    <Link to="/" className="title-link">
+    <Link to={appRoutes.root} className="title-link">
       <Avatar alt="shop" src="/images/shop-icon-192.png" />
       Shop
     </Link>

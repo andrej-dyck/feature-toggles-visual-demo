@@ -3,6 +3,7 @@ import { Button, Typography } from '@mui/material'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { CartActions } from '../api/LocalCart'
+import { appRoutes } from '../AppRoutes'
 import ContentTitle from '../Layouts/ContentTitle'
 import { formatCurrency } from '../Products/Currency'
 import { Cart, CartItem, itemPrice, totalPrice, totalCount } from './Cart'
@@ -19,7 +20,7 @@ const CartSummary: React.FC<{
 
   const handleCheckout = () => {
     const orderId = cart.id
-    navigate(`/confirmation/${orderId}`)
+    navigate(appRoutes.orderConfirmation(orderId))
     cartActions.newCart()
   }
 

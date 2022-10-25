@@ -13,6 +13,11 @@ export type Product = Readonly<{
   price: Currency
 }>
 
+export const productImgSrc = (p: Product) => ({
+  medium: () => `/images/products/${p.sku}B.jpg`,
+  large: () => `/images/products/${p.sku}A.jpg`
+})
+
 export type DetailedProduct = Product & Readonly<{
   description: string
 }>

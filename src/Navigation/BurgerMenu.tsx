@@ -2,6 +2,7 @@ import { HomeOutlined, Menu as MenuIcon } from '@mui/icons-material'
 import { Drawer, IconButton, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { appRoutes } from '../AppRoutes'
 import { Cart } from '../Cart/Cart'
 import CartIcon from '../Cart/CartIcon'
 import ContentTitle from '../Layouts/ContentTitle'
@@ -22,8 +23,8 @@ const BurgerMenu: React.FC<{ cart: Cart }> = ({ cart }) => {
             onClose={() => toggleDrawer('closed')}
     >
       <NavigationMenu items={[
-        { title: 'Home', link: '/', icon: (<HomeOutlined />) },
-        { title: 'Cart', link: '/cart', icon: (<CartIcon cart={cart} />) }
+        { title: 'Home', link: appRoutes.root, icon: (<HomeOutlined />) },
+        { title: 'Cart', link: appRoutes.cart(), icon: (<CartIcon cart={cart} />) }
       ]} />
     </Drawer>
   </>)
