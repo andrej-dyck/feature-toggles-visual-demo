@@ -16,3 +16,8 @@ code {
 .centered {
   margin: 0 auto;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

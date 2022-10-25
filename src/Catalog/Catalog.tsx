@@ -28,7 +28,7 @@ const Catalog: React.FC<{ store: CatalogStore }> = ({ store }) => {
 }
 
 const CategoryCard: React.FC<{ category: Category }> = ({ category }) =>
-  <Link to={appRoutes.category(category.id)} className="category-link">
+  <Link to={appRoutes.category(category.id)}>
     <Card className="category-card" elevation={1}>
       <CardMedia image={categoryImgSrc(category)}
                  title={category.title}
