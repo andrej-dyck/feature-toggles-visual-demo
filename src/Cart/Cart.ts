@@ -34,9 +34,6 @@ export const withChangedItemQuantity = (cart: Cart, item: Pick<CartItem, 'id'>, 
     : cart.items.filter(i => i.id !== item.id)
 })
 
-export const totalCount = (cart: Pick<Cart, 'items'>): number =>
-  cart.items.reduce((total, item) => total + item.quantity, 0)
-
 export const totalPrice = (cart: Pick<Cart, 'items'>): Currency =>
   cart.items.reduce((total, item) => plus(total, itemPrice(item)), ZERO)
 

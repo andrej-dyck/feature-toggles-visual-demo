@@ -17,7 +17,7 @@ import { appRoutes } from '../AppRoutes'
 import ContentTitle from '../Layouts/ContentTitle'
 import { formatCurrency } from '../Products/Currency'
 import { Product, productImgSrc } from '../Products/ProductStore'
-import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice, totalCount, totalPrice } from './Cart'
+import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice, totalPrice } from './Cart'
 import './CartSummary.css'
 
 const CartSummary: React.FC<{
@@ -26,7 +26,7 @@ const CartSummary: React.FC<{
 }> = ({ cart, cartActions }) => {
   const navigate = useNavigate()
 
-  const count = useMemo(() => totalCount(cart), [cart])
+  const noOfItems = cart.items.length
   const cartPrice = useMemo(() => totalPrice(cart), [cart])
   const buyDisabled = !hasItems(cart)
 
@@ -45,7 +45,7 @@ const CartSummary: React.FC<{
       <Stack spacing={0} alignItems="center">
         <ContentTitle text="Shopping Cart" />
         <Typography variant="body2" color="textSecondary">
-          ({count} {count === 1 ? 'item' : 'items'})
+          ({noOfItems} {noOfItems === 1 ? 'item' : 'items'})
         </Typography>
       </Stack>
 
