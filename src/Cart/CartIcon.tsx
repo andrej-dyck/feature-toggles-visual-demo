@@ -1,14 +1,17 @@
 import { ShoppingCartOutlined } from '@mui/icons-material'
 import { Badge, IconButton } from '@mui/material'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
 import { Cart, totalCount } from './Cart'
 
-const CartIcon: React.FC<{ cart: Cart }> = ({ cart }) =>
-  <Badge badgeContent={totalCount(cart)} max={100} color="primary">
+const CartIcon: React.FC<{ cart: Cart }> = ({ cart }) => {
+  const count = useMemo(() => totalCount(cart), [cart])
+
+  return <Badge badgeContent={count} max={100} color="primary">
     <ShoppingCartOutlined />
   </Badge>
+}
 
 export const LinkedCartIcon: React.FC<{ cart: Cart }> = ({ cart }) => {
   const navigate = useNavigate()
