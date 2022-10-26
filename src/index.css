@@ -17,6 +17,10 @@ code {
   margin: 0 auto;
 }
 
+.centered-text {
+  text-align: center;
+}
+
 a {
   text-decoration: none;
   color: inherit;

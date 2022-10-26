@@ -8,7 +8,7 @@ import { Cart, totalCount } from './Cart'
 const CartIcon: React.FC<{ cart: Cart }> = ({ cart }) => {
   const count = useMemo(() => totalCount(cart), [cart])
 
-  return <Badge badgeContent={count} max={100} color="primary">
+  return <Badge badgeContent={count} max={99} color="primary">
     <ShoppingCartOutlined />
   </Badge>
 }

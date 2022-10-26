@@ -10,14 +10,14 @@ import {
   TextField,
   Typography
 } from '@mui/material'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { CartActions } from '../api/LocalCart'
 import { appRoutes } from '../AppRoutes'
 import ContentTitle from '../Layouts/ContentTitle'
 import { formatCurrency } from '../Products/Currency'
 import { Product, productImgSrc } from '../Products/ProductStore'
-import { Cart, CartItem, itemPrice, totalCount, totalPrice } from './Cart'
+import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice, totalCount, totalPrice } from './Cart'
 import './CartSummary.css'
 
 const CartSummary: React.FC<{
@@ -28,7 +28,11 @@ const CartSummary: React.FC<{
 
   const count = useMemo(() => totalCount(cart), [cart])
   const cartPrice = useMemo(() => totalPrice(cart), [cart])
-  const buyDisabled = count === 0
+  const buyDisabled = !hasItems(cart)
+
+  const handleQuantityChange = (item: CartItem, quantity: number) => {
+    cartActions.changeItemQuantity(item, quantity)
+  }
 
   const handleCheckout = () => {
     const orderId = cart.id
@@ -37,7 +41,7 @@ const CartSummary: React.FC<{
   }
 
   return (
-    <Stack spacing={4} alignItems="center" className="cart-container" >
+    <Stack spacing={4} alignItems="center" className="cart-container">
       <Stack spacing={0} alignItems="center">
         <ContentTitle text="Shopping Cart" />
         <Typography variant="body2" color="textSecondary">
@@ -46,7 +50,11 @@ const CartSummary: React.FC<{
       </Stack>
 
       <div className="cart-items-container">
-        {cart.items.map((item, i) => (<ItemCard key={i} item={item} />))}
+        {hasItems(cart) ? cart.items.map(item => (
+          <ItemCard key={item.id} item={item} onQuantityChanged={handleQuantityChange} />)
+        ) : <Typography variant="h5" color="textSecondary" className="centered-text">
+          Your cart is empty 😥
+        </Typography>}
       </div>
 
       <Typography variant="h6">
@@ -66,7 +74,10 @@ const CartSummary: React.FC<{
   )
 }
 
-const ItemCard: React.FC<{ item: CartItem }> = ({ item }) => {
+const ItemCard: React.FC<{
+  item: CartItem,
+  onQuantityChanged: (item: CartItem, q: number) => void
+}> = ({ item, onQuantityChanged }) => {
   return (
     <Card sx={{ display: 'flex' }} elevation={1} className="item-card">
       <LinkToProduct product={item}>
@@ -87,11 +98,11 @@ const ItemCard: React.FC<{ item: CartItem }> = ({ item }) => {
         </Stack>
       </CardContent>
       <CardActions className="item-card-actions">
-        <QuantityInput quantity={item.quantity} onChange={(q) => console.log(q)} />
+        <QuantityInput quantity={item.quantity} onChange={(q) => onQuantityChanged(item, q)} />
         <Typography variant="body1" color="textSecondary">
           {formatCurrency(itemPrice(item))}
         </Typography>
-        <IconButton disabled={true}>
+        <IconButton onClick={() => onQuantityChanged(item, 0)}>
           <Clear />
         </IconButton>
       </CardActions>
@@ -107,15 +118,25 @@ const LinkToProduct: React.FC<{
     {children}
   </Link>
 
-const QuantityInput: React.FC<{ quantity: number, onChange: (q: number) => void }> = ({quantity, onChange}) =>
-  <TextField
+const QuantityInput: React.FC<{
+  quantity: number,
+  onChange: (q: number) => void
+}> = ({ quantity, onChange }) => {
+  const [value, setValue] = useState(quantity)
+
+  return <TextField
     label="Quantity"
     inputProps={{ inputMode: 'numeric', pattern: '[1-9][0-9]*' }}
-    defaultValue={quantity}
-    onChange={(event) => onChange(Number(event.target.value))}
+    value={value}
+    onChange={(event) => {
+      const q = Number(event.target.value)
+      setValue(q)
+      if (isValidItemQuantity(q) && q !== quantity) onChange(q)
+    }}
+    error={!isValidItemQuantity(value)}
     size="small"
-    disabled={true}
     className="quantity-input"
   />
+}
 
 export default CartSummary
