@@ -12,12 +12,12 @@ import {
 } from '@mui/material'
 import React, { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { CartActions } from '../api/LocalCart'
 import { appRoutes } from '../AppRoutes'
 import ContentTitle from '../Layouts/ContentTitle'
 import { formatCurrency } from '../Products/Currency'
 import { Product, productImgSrc } from '../Products/ProductStore'
 import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice, totalPrice } from './Cart'
+import { CartActions } from './CartActions'
 import './CartSummary.css'
 
 const CartSummary: React.FC<{

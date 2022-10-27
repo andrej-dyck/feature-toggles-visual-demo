@@ -1,8 +1,8 @@
 import CircularProgress from '@mui/material/CircularProgress'
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
-import { CartActions } from './api/LocalCart'
 import { Cart } from './Cart/Cart'
+import { CartActions } from './Cart/CartActions'
 import { CatalogStore } from './Catalog/CatalogStore'
 import { ProductStore } from './Products/ProductStore'
 const Catalog = React.lazy(() => import('./Catalog/Catalog'))

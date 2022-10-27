@@ -6,6 +6,7 @@ import { FakeProductStore } from './api/FakeProductStore'
 import { useCart } from './api/LocalCart'
 import './App.css'
 import AppRoutes from './AppRoutes'
+import CartNotifications from './Cart/CartNotifications'
 import Header from './Navigation/Header'
 
 const queryClient = new QueryClient()
@@ -13,7 +14,7 @@ const queryClient = new QueryClient()
 function App() {
   const catalogStore = new FakeCatalogStore()
   const productStore = new FakeProductStore()
-  const { cart, cartActions } = useCart()
+  const { cart, cartActions, cartEvent } = useCart()
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -27,6 +28,7 @@ function App() {
             cartActions={cartActions}
           />
         </div>
+        <CartNotifications event={cartEvent} />
       </Router>
     </QueryClientProvider>
   )
