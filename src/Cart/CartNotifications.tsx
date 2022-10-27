@@ -23,13 +23,15 @@ const ItemAddedNotification: React.FC<{ item: Omit<CartItem, 'id'> | undefined }
     if (item) dispatch({
       message: `'${item.title}' added to cart`,
       action: (
-        <Button variant="contained"
-                color="primary"
-                size="small"
-                onClick={() => {
-                  clear()
-                  navigate(appRoutes.cart())
-                }}>
+        <Button
+          variant="contained"
+          color="primary"
+          size="small"
+          onClick={() => {
+            clear()
+            navigate(appRoutes.cart())
+          }}
+        >
           Show Cart
         </Button>
       ),

@@ -14,10 +14,11 @@ export const LinkedCartIcon: React.FC<{ cart: Cart }> = ({ cart }) => {
   const navigate = useNavigate()
 
   return (
-    <IconButton edge="end"
-                color="inherit"
-                aria-label="shopping cart"
-                onClick={() => navigate(appRoutes.cart())}
+    <IconButton
+      edge="end"
+      color="inherit"
+      aria-label="shopping cart"
+      onClick={() => navigate(appRoutes.cart())}
     >
       <CartIcon cart={cart} />
     </IconButton>

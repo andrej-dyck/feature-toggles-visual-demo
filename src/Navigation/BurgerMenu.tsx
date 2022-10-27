@@ -18,9 +18,10 @@ const BurgerMenu: React.FC<{ cart: Cart }> = ({ cart }) => {
     <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => toggleDrawer('open')}>
       <MenuIcon />
     </IconButton>
-    <Drawer anchor="left"
-            open={drawerState === 'open'}
-            onClose={() => toggleDrawer('closed')}
+    <Drawer
+      anchor="left"
+      open={drawerState === 'open'}
+      onClose={() => toggleDrawer('closed')}
     >
       <NavigationMenu items={[
         { title: 'Home', link: appRoutes.root, icon: (<HomeOutlined />) },

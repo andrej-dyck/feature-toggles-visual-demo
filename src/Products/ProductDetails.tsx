@@ -77,15 +77,17 @@ const ProductCard: React.FC<{
       </Typography>
     </div>
     <div className="options">
-      <OptionsPicker label="Size"
-                     initialValue={size}
-                     values={availableSizes}
-                     onChange={s => chooseSize(s as Size)}
+      <OptionsPicker
+        label="Size"
+        initialValue={size}
+        values={availableSizes}
+        onChange={s => chooseSize(s as Size)}
       />
-      <OptionsPicker label="Quantity"
-                     initialValue={quantity.toString()}
-                     values={availableQuantities.map(n => n.toString())}
-                     onChange={n => chooseQuantity(Number(n))}
+      <OptionsPicker
+        label="Quantity"
+        initialValue={quantity.toString()}
+        values={availableQuantities.map(n => n.toString())}
+        onChange={n => chooseQuantity(Number(n))}
       />
       <Typography variant="h6" className="price-tag">
         {formatCurrency(product.price)}
