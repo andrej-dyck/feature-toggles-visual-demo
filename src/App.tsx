@@ -9,29 +9,34 @@ import AppRoutes from './AppRoutes'
 import CartNotifications from './Cart/CartNotifications'
 import Header from './Navigation/Header'
 
-const queryClient = new QueryClient()
-
-function App() {
+const App: React.FC = () => {
   const catalogStore = new FakeCatalogStore()
   const productStore = new FakeProductStore()
   const { cart, cartActions, cartEvent } = useCart()
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <Router>
-        <Header cart={cart} />
-        <div className="app-content">
-          <AppRoutes
-            catalogStore={catalogStore}
-            productStore={productStore}
-            cart={cart}
-            cartActions={cartActions}
-          />
-        </div>
-        <CartNotifications event={cartEvent} />
-      </Router>
-    </QueryClientProvider>
+    <Providers>
+      <Header cart={cart} />
+      <div className="app-content">
+        <AppRoutes
+          catalogStore={catalogStore}
+          productStore={productStore}
+          cart={cart}
+          cartActions={cartActions}
+        />
+      </div>
+      <CartNotifications event={cartEvent} />
+    </Providers>
   )
 }
+
+const queryClient = new QueryClient()
+const Providers: React.FC<{ children: React.ReactNode }> = ({children}) => (
+  <Router>
+    <QueryClientProvider client={queryClient}>
+      {children}
+    </QueryClientProvider>
+  </Router>
+)
 
 export default App
