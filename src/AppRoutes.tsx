@@ -56,6 +56,6 @@ export const appRoutes = {
 } as const
 
 const Loading: React.FC = () =>
-  <CircularProgress color="secondary" className="centered" />
+  <CircularProgress color="primary" className="centered" />
 
 export default AppRoutes

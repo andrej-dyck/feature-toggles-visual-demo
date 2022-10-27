@@ -8,7 +8,7 @@ import BurgerMenu from './BurgerMenu'
 import './Header.css'
 
 const Header: React.FC<{ cart: Cart }> = ({cart}) => (
-  <AppBar position="sticky" className="Header">
+  <AppBar position="sticky" className="Header" color="default">
     <Toolbar>
       <BurgerMenu cart={cart} />
       <Title />

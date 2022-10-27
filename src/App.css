@@ -1,7 +1,4 @@
-.App {
-}
-
-.App .content {
+.app-content {
   display: flex;
   flex-flow: column;
   align-items: center;
