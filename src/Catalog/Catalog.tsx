@@ -15,7 +15,7 @@ const Catalog: React.FC<{ store: CatalogStore }> = ({ store }) => {
 
   if (status === 'success' && (categories?.length ?? 0) > 0) return (
     <GridLayout>
-      {categories?.map(c => (<CategoryCard category={c} key={c.id} />))}
+      {categories?.map(c => (<CategoryCard category={c} key={c.categoryId} />))}
     </GridLayout>
   )
 
@@ -31,7 +31,7 @@ const Catalog: React.FC<{ store: CatalogStore }> = ({ store }) => {
 }
 
 const CategoryCard: React.FC<{ category: Category }> = ({ category }) =>
-  <Link to={appRoutes.category(category.id)}>
+  <Link to={appRoutes.category(category.categoryId)}>
     <Card className="category-card" elevation={1}>
       <CardMedia
         image={categoryImgSrc(category)}
@@ -44,6 +44,6 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) =>
     </Card>
   </Link>
 
-const categoryImgSrc = (category: Category) => `images/catalog/${category.id}.jpg`
+const categoryImgSrc = (category: Category) => `images/catalog/${category.categoryId}.jpg`
 
 export default Catalog

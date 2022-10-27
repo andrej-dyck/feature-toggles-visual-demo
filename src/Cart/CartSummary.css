@@ -33,12 +33,12 @@
   text-align: right;
 }
 
-.buy-buttons {
+.action-buttons {
   width: 100%;
   max-width: 400px;
 }
 
-.buy-buttons > * {
+.action-buttons > * {
   width: 100%;
 }
 

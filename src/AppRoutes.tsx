@@ -1,23 +1,27 @@
 import CircularProgress from '@mui/material/CircularProgress'
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import { Cart } from './Cart/Cart'
 import { CartActions } from './Cart/CartActions'
 import { CatalogStore } from './Catalog/CatalogStore'
+import { Orders } from './Orders/Orders'
 import { ProductStore } from './Products/ProductStore'
+
 const Catalog = React.lazy(() => import('./Catalog/Catalog'))
 const CategoryTitle = React.lazy(() => import('./Catalog/CategoryTitle'))
 const ListCategory = React.lazy(() => import('./Products/ListCategory'))
 const ProductDetails = React.lazy(() => import('./Products/ProductDetails'))
 const CartSummary = React.lazy(() => import('./Cart/CartSummary'))
-const Confirmation = React.lazy(() => import('./Cart/Confirmation'))
+const Checkout = React.lazy(() => import('./Cart/Checkout'))
+const Confirmation = React.lazy(() => import('./Orders/Confirmation'))
 
 const AppRoutes: React.FC<{
-  catalogStore: CatalogStore,
-  productStore: ProductStore,
-  cart: Cart,
+  catalogStore: CatalogStore
+  productStore: ProductStore
+  cart: Cart
   cartActions: CartActions
-}> = ({catalogStore, productStore, cart, cartActions}) =>
+  orders: Orders
+}> = ({ catalogStore, productStore, cart, cartActions, orders }) =>
   <Routes>
     <Route path={appRoutes.root} element={
       <React.Suspense fallback={<Loading />}>
@@ -40,6 +44,11 @@ const AppRoutes: React.FC<{
         <CartSummary cart={cart} cartActions={cartActions} />
       </React.Suspense>
     } />
+    <Route path={appRoutes.checkout()} element={
+      <React.Suspense fallback={<Loading />}>
+        <Checkout cart={cart} cartActions={cartActions} orders={orders} />
+      </React.Suspense>
+    } />
     <Route path={appRoutes.orderConfirmation()} element={
       <React.Suspense fallback={<Loading />}>
         <Confirmation />
@@ -52,6 +61,7 @@ export const appRoutes = {
   category: (categoryId = ':categoryId') => `/categories/${categoryId}`,
   product: (sku = ':sku') => `/products/${sku}`,
   cart: () => `/cart`,
+  checkout: () => `/checkout`,
   orderConfirmation: (orderId = ':orderId') => `/confirm/${orderId}`
 } as const
 

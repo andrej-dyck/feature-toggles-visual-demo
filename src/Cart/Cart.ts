@@ -3,35 +3,35 @@ import { Product } from '../Products/ProductStore'
 import { Size } from '../Products/Size'
 
 export type Cart = Readonly<{
-  id: string
+  cartId: string
   items: ReadonlyArray<CartItem>
 }>
 
 export type CartItem = Product & Readonly<{
-  id: string
+  itemId: string
   size: Size
   quantity: number
 }>
 
-export const emptyCart = (id = crypto.randomUUID()): Cart => ({ id, items: [] })
+export const emptyCart = (id = crypto.randomUUID()): Cart => ({ cartId: id, items: [] })
 
 export const hasItems = (cart: Pick<Cart, 'items'>) => cart.items.length > 0
 
-export const withItem = (cart: Cart, item: Omit<CartItem, 'id'>): Cart => {
+export const withItem = (cart: Cart, item: Omit<CartItem, 'itemId'>): Cart => {
   const existingItem = findExistingItem(cart, item)
   return existingItem
     ? withChangedItemQuantity(cart, existingItem, existingItem.quantity + item.quantity)
-    : { ...cart, items: [...cart.items, { ...item, id: crypto.randomUUID() }] }
+    : { ...cart, items: [...cart.items, { ...item, itemId: crypto.randomUUID() }] }
 }
 
 const findExistingItem = (cart: Pick<Cart, 'items'>, item: Pick<CartItem, 'sku' | 'size'>) =>
   cart.items.find(i => i.sku === item.sku && i.size === item.size)
 
-export const withChangedItemQuantity = (cart: Cart, item: Pick<CartItem, 'id'>, quantity: number) => ({
+export const withChangedItemQuantity = (cart: Cart, item: Pick<CartItem, 'itemId'>, quantity: number) => ({
   ...cart,
   items: quantity > 0
-    ? cart.items.map(i => i.id === item.id ? { ...i, quantity: quantity } : i)
-    : cart.items.filter(i => i.id !== item.id)
+    ? cart.items.map(i => i.itemId === item.itemId ? { ...i, quantity: quantity } : i)
+    : cart.items.filter(i => i.itemId !== item.itemId)
 })
 
 export const totalPrice = (cart: Pick<Cart, 'items'>): Currency =>

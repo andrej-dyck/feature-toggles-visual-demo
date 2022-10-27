@@ -1,5 +1,5 @@
 import Clear from '@mui/icons-material/Clear'
-import CreditCard from '@mui/icons-material/CreditCard'
+import ShoppingCartCheckout from '@mui/icons-material/ShoppingCartCheckout'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
@@ -9,34 +9,28 @@ import IconButton from '@mui/material/IconButton'
 import Stack from '@mui/material/Stack'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import React, { useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
 import ContentTitle from '../Layouts/ContentTitle'
 import { formatCurrency } from '../Products/Currency'
 import { Product, productImgSrc } from '../Products/ProductStore'
-import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice, totalPrice } from './Cart'
+import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice } from './Cart'
 import { CartActions } from './CartActions'
 import './CartSummary.css'
+import CartTotal from './CartTotal'
 
 const CartSummary: React.FC<{
-  cart: Cart,
+  cart: Cart
   cartActions: CartActions
 }> = ({ cart, cartActions }) => {
   const navigate = useNavigate()
 
   const noOfItems = cart.items.length
-  const cartPrice = useMemo(() => totalPrice(cart), [cart])
-  const buyDisabled = !hasItems(cart)
+  const checkoutDisabled = !hasItems(cart)
 
   const handleQuantityChange = (item: CartItem, quantity: number) => {
     cartActions.changeItemQuantity(item, quantity)
-  }
-
-  const handleCheckout = () => {
-    const orderId = cart.id
-    navigate(appRoutes.orderConfirmation(orderId))
-    cartActions.newCart()
   }
 
   return (
@@ -50,23 +44,21 @@ const CartSummary: React.FC<{
 
       <div className="cart-items-container">
         {hasItems(cart) ? cart.items.map(item => (
-          <ItemCard key={item.id} item={item} onQuantityChanged={handleQuantityChange} />)
+          <ItemCard key={item.itemId} item={item} onQuantityChanged={handleQuantityChange} />)
         ) : <Typography variant="h5" color="textSecondary" className="centered-text">
           Your cart is empty 😥
         </Typography>}
       </div>
 
-      <Typography variant="h6">
-        Total: {formatCurrency(cartPrice)}
-      </Typography>
+      <CartTotal cart={cart} prefix="Total:" />
 
-      <div className="buy-buttons">
+      <div className="action-buttons">
         <Button variant="contained"
-                startIcon={<CreditCard />}
-                onClick={handleCheckout}
-                disabled={buyDisabled}
+                startIcon={<ShoppingCartCheckout />}
+                onClick={() => navigate(appRoutes.checkout())}
+                disabled={checkoutDisabled}
         >
-          Buy now
+          Checkout
         </Button>
       </div>
     </Stack>

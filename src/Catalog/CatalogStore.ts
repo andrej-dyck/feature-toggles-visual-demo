@@ -6,7 +6,7 @@ export interface CatalogStore {
   categoryById(categoryId: string): Promise<Category | undefined>
 }
 
-export type Category = Readonly<{ id: string; title: string }>
+export type Category = Readonly<{ categoryId: string; title: string }>
 
 export const useCategories = (store: CatalogStore): Query<ReadonlyArray<Category>> =>
   useQuery(['categories'], () => store.allCategories())

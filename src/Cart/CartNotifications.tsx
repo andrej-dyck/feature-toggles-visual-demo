@@ -13,9 +13,9 @@ const CartNotifications: React.FC<{ event: CartEvent | undefined }> = ({ event }
   </SnackbarNotifications>
 
 export type CartEvent =
-  | { type: 'item-added', item: Omit<CartItem, 'id'> }
+  | { type: 'item-added', item: Omit<CartItem, 'itemId'> }
 
-const ItemAddedNotification: React.FC<{ item: Omit<CartItem, 'id'> | undefined }> = ({ item }) => {
+const ItemAddedNotification: React.FC<{ item: Omit<CartItem, 'itemId'> | undefined }> = ({ item }) => {
   const { dispatch, clear } = useSnackbarNotifications()
   const navigate = useNavigate()
 

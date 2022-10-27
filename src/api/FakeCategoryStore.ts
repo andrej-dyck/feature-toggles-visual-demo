@@ -15,22 +15,22 @@ export class FakeCatalogStore implements CatalogStore {
   categoryById(categoryId: string): Promise<Category | undefined> {
     return new Promise(
       resolve => setTimeout(() => resolve(
-        this.categories.find(c => c.id === categoryId)
+        this.categories.find(c => c.categoryId === categoryId)
       ), this.fakeDelayInMs/2)
     )
   }
 }
 
 const categoryStubs: ReadonlyArray<Category> = [{
-  id: 'mens-outerwear',
+  categoryId: 'mens-outerwear',
   title: 'Men\'s Outerwear',
 }, {
-  id: 'ladies-outerwear',
+  categoryId: 'ladies-outerwear',
   title: 'Lady\'s Outerwear',
 }, {
-  id: 'mens-tshirts',
+  categoryId: 'mens-tshirts',
   title: 'Men\'s T-Shirts',
 }, {
-  id: 'ladies-tshirts',
+  categoryId: 'ladies-tshirts',
   title: 'Lady\'s T-Shirts',
 }] as const
