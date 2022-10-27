@@ -1,5 +1,5 @@
-import { Button } from '@mui/material'
-import { useEffect } from 'react'
+import Button from '@mui/material/Button'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
 import SnackbarNotifications, { useSnackbarNotifications } from '../Layouts/SnackbarNotifications'

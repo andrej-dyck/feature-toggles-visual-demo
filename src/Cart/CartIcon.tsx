@@ -1,5 +1,6 @@
-import { ShoppingCartOutlined } from '@mui/icons-material'
-import { Badge, IconButton } from '@mui/material'
+import ShoppingCartOutlined from '@mui/icons-material/ShoppingCartOutlined'
+import Badge from '@mui/material/Badge'
+import IconButton from '@mui/material/IconButton'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'

@@ -1,14 +1,13 @@
-import { FavoriteBorderOutlined, ShoppingCart } from '@mui/icons-material'
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  IconButton,
-  Typography
-} from '@mui/material'
+import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
+import ShoppingCart from '@mui/icons-material/ShoppingCart'
+import Button from '@mui/material/Button'
+import Card from '@mui/material/Card'
+import CardActionArea from '@mui/material/CardActionArea'
+import CardActions from '@mui/material/CardActions'
+import CardContent from '@mui/material/CardContent'
+import CardMedia from '@mui/material/CardMedia'
+import IconButton from '@mui/material/IconButton'
+import Typography from '@mui/material/Typography'
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'

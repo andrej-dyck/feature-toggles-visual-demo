@@ -1,4 +1,7 @@
-import { AppBar, Avatar, Toolbar, Typography } from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import Avatar from '@mui/material/Avatar'
+import Toolbar from '@mui/material/Toolbar'
+import Typography from '@mui/material/Typography'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'

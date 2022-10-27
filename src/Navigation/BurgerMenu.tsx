@@ -1,5 +1,11 @@
-import { HomeOutlined, Menu as MenuIcon } from '@mui/icons-material'
-import { Drawer, IconButton, ListItemIcon, ListItemText, MenuItem, MenuList } from '@mui/material'
+import HomeOutlined from '@mui/icons-material/HomeOutlined'
+import Menu from '@mui/icons-material/Menu'
+import Drawer from '@mui/material/Drawer'
+import IconButton from '@mui/material/IconButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import MenuItem from '@mui/material/MenuItem'
+import MenuList from '@mui/material/MenuList'
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
@@ -16,7 +22,7 @@ const BurgerMenu: React.FC<{ cart: Cart }> = ({ cart }) => {
 
   return (<>
     <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => toggleDrawer('open')}>
-      <MenuIcon />
+      <Menu />
     </IconButton>
     <Drawer
       anchor="left"

@@ -1,5 +1,5 @@
-import { Snackbar, SnackbarOrigin, SnackbarProps } from '@mui/material'
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import Snackbar, { SnackbarOrigin, SnackbarProps } from '@mui/material/Snackbar'
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { never } from '../api/never'
 
 type Message = Readonly<{
