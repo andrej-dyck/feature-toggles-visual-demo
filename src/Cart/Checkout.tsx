@@ -21,7 +21,6 @@ const Checkout: React.FC<{
   const { checkout, status, data: order } = useCheckout(orders)
   const navigate = useNavigate()
 
-
   useEffect(() => {
     if (!hasItems(cart)) navigate(appRoutes.cart())
   }, [cart])
@@ -46,10 +45,11 @@ const Checkout: React.FC<{
       <CartTotal cart={cart} prefix="Pay" />
 
       <div className="action-buttons">
-        <Button variant="contained"
-                startIcon={<CreditCard />}
-                onClick={() => checkout(cart)}
-                disabled={status !== 'idle'}
+        <Button
+          variant="contained"
+          startIcon={<CreditCard />}
+          onClick={() => checkout(cart)}
+          disabled={status !== 'idle'}
         >
           Buy now
         </Button>

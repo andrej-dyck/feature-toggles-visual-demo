@@ -1,4 +1,7 @@
+import ShoppingCart from '@mui/icons-material/ShoppingCart'
+import ShoppingCartCheckout from '@mui/icons-material/ShoppingCartCheckout'
 import Button from '@mui/material/Button'
+import Stack from '@mui/material/Stack'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
@@ -16,29 +19,42 @@ export type CartEvent =
   | { type: 'item-added', item: Omit<CartItem, 'itemId'> }
 
 const ItemAddedNotification: React.FC<{ item: Omit<CartItem, 'itemId'> | undefined }> = ({ item }) => {
-  const { dispatch, clear } = useSnackbarNotifications()
+  const { dispatch } = useSnackbarNotifications()
   const navigate = useNavigate()
 
   useEffect(() => {
     if (item) dispatch({
       message: `'${item.title}' added to cart`,
-      action: (
-        <Button
-          variant="contained"
-          color="primary"
-          size="small"
-          onClick={() => {
-            clear()
-            navigate(appRoutes.cart())
-          }}
-        >
-          Show Cart
-        </Button>
-      ),
+      action: (<Stack direction="row" spacing={1}>
+        <ActionButton text="Show Cart" onClick={() => navigate(appRoutes.cart())} />
+        <ActionButton text="Checkout" color="secondary" onClick={() => navigate(appRoutes.checkout())}
+        />
+      </Stack>),
     })
   }, [item])
 
   return <></>
+}
+
+const ActionButton: React.FC<{
+  text: string
+  onClick: () => void
+  color?: 'primary' | 'secondary'
+}> = ({ text, onClick, color }) => {
+  const { clear } = useSnackbarNotifications()
+  return (
+    <Button
+      variant="contained"
+      color={color ?? 'primary'}
+      size="small"
+      onClick={() => {
+        clear()
+        onClick()
+      }}
+    >
+      {text}
+    </Button>
+  )
 }
 
 export default CartNotifications
