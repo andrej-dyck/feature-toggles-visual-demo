@@ -1,10 +1,10 @@
-import ShoppingCart from '@mui/icons-material/ShoppingCart'
-import ShoppingCartCheckout from '@mui/icons-material/ShoppingCartCheckout'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
+import { useFeatureToggle } from '../FeatureToggles/FeatureToggles'
+import { releaseFlag } from '../FeatureToggles/Flags'
 import SnackbarNotifications, { useSnackbarNotifications } from '../Layouts/SnackbarNotifications'
 import { CartItem } from './Cart'
 
@@ -21,14 +21,16 @@ export type CartEvent =
 const ItemAddedNotification: React.FC<{ item: Omit<CartItem, 'itemId'> | undefined }> = ({ item }) => {
   const { dispatch } = useSnackbarNotifications()
   const navigate = useNavigate()
+  const { isActive: checkoutBtnEnabled } = useFeatureToggle(releaseFlag('checkout-with-added-item-notification'))
 
   useEffect(() => {
     if (item) dispatch({
       message: `'${item.title}' added to cart`,
       action: (<Stack direction="row" spacing={1}>
         <ActionButton text="Show Cart" onClick={() => navigate(appRoutes.cart())} />
-        <ActionButton text="Checkout" color="secondary" onClick={() => navigate(appRoutes.checkout())}
-        />
+        {checkoutBtnEnabled &&
+          <ActionButton text="Checkout" color="secondary" onClick={() => navigate(appRoutes.checkout())} />
+        }
       </Stack>),
     })
   }, [item])

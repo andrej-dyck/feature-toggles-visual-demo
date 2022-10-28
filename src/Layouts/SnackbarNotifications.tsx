@@ -8,10 +8,10 @@ type Message = Readonly<{
 }>
 
 const SnackbarNotifications: React.FC<{
-  children: React.ReactNode,
-  anchor?: SnackbarOrigin,
+  children: React.ReactNode
+  anchor?: SnackbarOrigin
   transition?: TransitionComponent
-  className?: string,
+  className?: string
 }> = ({ children, anchor, transition, className }) => {
   const [messages, setMessages] = useState<(Message & Timestamped)[]>([])
   const [currentMessage, showMessage] = useState<(Message & Timestamped) | undefined>(undefined)

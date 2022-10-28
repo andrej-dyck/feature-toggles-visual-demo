@@ -17,7 +17,7 @@ import { DetailedProduct, Product, productImgSrc, ProductStore, useProduct } fro
 import { availableSizes, Size } from './Size'
 
 const ProductDetails: React.FC<{
-  store: ProductStore,
+  store: ProductStore
   cartActions: CartActions
 }> = ({ store, cartActions }) => {
   const { sku } = useParams()

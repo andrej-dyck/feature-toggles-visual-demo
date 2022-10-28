@@ -31,7 +31,7 @@ const AppRoutes: React.FC<{
     <Route path={appRoutes.category()} element={
       <React.Suspense fallback={<Loading />}>
         <CategoryTitle store={catalogStore} />
-        <ListCategory store={productStore} />
+        <ListCategory store={productStore} cartActions={cartActions} />
       </React.Suspense>
     } />
     <Route path={appRoutes.product()} element={

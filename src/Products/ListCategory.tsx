@@ -11,19 +11,33 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
+import { CartActions } from '../Cart/CartActions'
+import { useFeatureToggle } from '../FeatureToggles/FeatureToggles'
+import { releaseFlag } from '../FeatureToggles/Flags'
 import GridLayout from '../Layouts/GridLayout'
 import GridSkeleton from '../Layouts/GridSkeleton'
-import './ListCategory.css'
 import { formatCurrency } from './Currency'
+import './ListCategory.css'
 import { Product, productImgSrc, ProductStore, useProductsInCategory } from './ProductStore'
 
-const ListCategory: React.FC<{ store: ProductStore }> = ({ store }) => {
+const ListCategory: React.FC<{
+  store: ProductStore
+  cartActions: CartActions
+}> = ({ store, cartActions }) => {
   const { categoryId } = useParams()
   const { data: products, status } = useProductsInCategory(store, categoryId ?? '')
+  const { isActive: addToCartBtnEnabled } = useFeatureToggle(releaseFlag('quick-add-to-cart-button'))
 
   if (status === 'success' && (products?.length ?? 0) > 0) return (
     <GridLayout>
-      {products?.map(p => (<ProductCard key={p.sku} product={p} />))}
+      {products?.map(p => (
+        <ProductCard
+          key={p.sku}
+          product={p}
+          addToCartBtnEnabled={addToCartBtnEnabled}
+          cartActions={cartActions}
+        />))
+      }
     </GridLayout>
   )
 
@@ -38,7 +52,11 @@ const ListCategory: React.FC<{ store: ProductStore }> = ({ store }) => {
   )
 }
 
-const ProductCard: React.FC<{ product: Product, addToCartBtn?: boolean }> = ({ product, addToCartBtn }) => {
+const ProductCard: React.FC<{
+  product: Product,
+  addToCartBtnEnabled?: boolean
+  cartActions: CartActions
+}> = ({ product, addToCartBtnEnabled, cartActions }) => {
   const navigate = useNavigate()
 
   return (
@@ -59,8 +77,12 @@ const ProductCard: React.FC<{ product: Product, addToCartBtn?: boolean }> = ({ p
         <IconButton aria-label="add to favorites" disabled={true}>
           <FavoriteBorderOutlined />
         </IconButton>
-        {addToCartBtn ? (
-          <Button variant="contained" startIcon={<ShoppingCart />}>
+        {addToCartBtnEnabled ? (
+          <Button
+            variant="contained"
+            startIcon={<ShoppingCart />}
+            onClick={() => cartActions.addItem({ ...product, size: 'M', quantity: 1 })}
+          >
             {formatCurrency(product.price)}
           </Button>
         ) : (
