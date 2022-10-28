@@ -17,7 +17,8 @@ const Checkout: React.FC<{
   cart: Cart,
   cartActions: CartActions
   orders: Orders
-}> = ({ cart, cartActions, orders }) => {
+  showTitle?: boolean
+}> = ({ cart, cartActions, orders, showTitle }) => {
   const { checkout, status, data: order } = useCheckout(orders)
   const navigate = useNavigate()
 
@@ -40,7 +41,7 @@ const Checkout: React.FC<{
 
   return (
     <Stack spacing={4} alignItems="center" className="cart-container">
-      <ContentTitle text="Checkout" />
+      {(showTitle ?? true) && <ContentTitle text="Checkout" />}
 
       <CartTotal cart={cart} prefix="Pay" />
 

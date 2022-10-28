@@ -22,8 +22,9 @@ export class FakeFeatureTogglesApi implements FeatureTogglesApi {
 
 const demoToggles = (): TogglesRecord => ({
   'release-flag': {
-    'checkout-with-added-item-notification': { enabled: true },
+    'checkout-with-added-item-notification': { enabled: false },
     'quick-add-to-cart-button': { enabled: false },
+    'show-order-process-steps': { enabled: false }
   },
   'ops-flag': {
     'demo1': { enabled: true },

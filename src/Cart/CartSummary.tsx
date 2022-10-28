@@ -23,7 +23,8 @@ import CartTotal from './CartTotal'
 const CartSummary: React.FC<{
   cart: Cart
   cartActions: CartActions
-}> = ({ cart, cartActions }) => {
+  showTitle?: boolean
+}> = ({ cart, cartActions, showTitle }) => {
   const navigate = useNavigate()
 
   const noOfItems = cart.items.length
@@ -36,7 +37,7 @@ const CartSummary: React.FC<{
   return (
     <Stack spacing={4} alignItems="center" className="cart-container">
       <Stack spacing={0} alignItems="center">
-        <ContentTitle text="Shopping Cart" />
+        {(showTitle ?? true) && <ContentTitle text="Shopping Cart" />}
         <Typography variant="body2" color="textSecondary">
           ({noOfItems} {noOfItems === 1 ? 'item' : 'items'})
         </Typography>

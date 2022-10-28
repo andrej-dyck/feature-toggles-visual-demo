@@ -4,6 +4,8 @@ import { Route, Routes } from 'react-router-dom'
 import { Cart } from './Cart/Cart'
 import { CartActions } from './Cart/CartActions'
 import { CatalogStore } from './Catalog/CatalogStore'
+import { useFeatureToggle } from './FeatureToggles/FeatureToggles'
+import { releaseFlag } from './FeatureToggles/Flags'
 import { Orders } from './Orders/Orders'
 import { ProductStore } from './Products/ProductStore'
 
@@ -14,6 +16,7 @@ const ProductDetails = React.lazy(() => import('./Products/ProductDetails'))
 const CartSummary = React.lazy(() => import('./Cart/CartSummary'))
 const Checkout = React.lazy(() => import('./Cart/Checkout'))
 const Confirmation = React.lazy(() => import('./Orders/Confirmation'))
+const OrderProcessSteps = React.lazy(() => import('./Orders/OrderProcessSteps'))
 
 const AppRoutes: React.FC<{
   catalogStore: CatalogStore
@@ -21,8 +24,10 @@ const AppRoutes: React.FC<{
   cart: Cart
   cartActions: CartActions
   orders: Orders
-}> = ({ catalogStore, productStore, cart, cartActions, orders }) =>
-  <Routes>
+}> = ({ catalogStore, productStore, cart, cartActions, orders }) => {
+  const { isActive: orderProcessStepsEnabled } = useFeatureToggle(releaseFlag('show-order-process-steps'))
+
+  return <Routes>
     <Route path={appRoutes.root} element={
       <React.Suspense fallback={<Loading />}>
         <Catalog store={catalogStore} />
@@ -41,20 +46,28 @@ const AppRoutes: React.FC<{
     } />
     <Route path={appRoutes.cart()} element={
       <React.Suspense fallback={<Loading />}>
-        <CartSummary cart={cart} cartActions={cartActions} />
+        {orderProcessStepsEnabled && <OrderProcessSteps activeStep={0} />}
+        <CartSummary cart={cart} cartActions={cartActions}
+                     showTitle={!orderProcessStepsEnabled}
+        />
       </React.Suspense>
     } />
     <Route path={appRoutes.checkout()} element={
       <React.Suspense fallback={<Loading />}>
-        <Checkout cart={cart} cartActions={cartActions} orders={orders} />
+        {orderProcessStepsEnabled && <OrderProcessSteps activeStep={1} />}
+        <Checkout cart={cart} cartActions={cartActions} orders={orders}
+                  showTitle={!orderProcessStepsEnabled}
+        />
       </React.Suspense>
     } />
     <Route path={appRoutes.orderConfirmation()} element={
       <React.Suspense fallback={<Loading />}>
+        {orderProcessStepsEnabled && <OrderProcessSteps activeStep={2} />}
         <Confirmation />
       </React.Suspense>
     } />
   </Routes>
+}
 
 export const appRoutes = {
   root: '/',
