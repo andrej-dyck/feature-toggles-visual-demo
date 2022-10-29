@@ -1,7 +1,5 @@
 import CreditCard from '@mui/icons-material/CreditCard'
-import Backdrop from '@mui/material/Backdrop'
-import Button from '@mui/material/Button'
-import CircularProgress from '@mui/material/CircularProgress'
+import LoadingButton from '@mui/lab/LoadingButton'
 import Stack from '@mui/material/Stack'
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -33,12 +31,6 @@ const Checkout: React.FC<{
     }
   }, [order])
 
-  if (status === 'loading') return (
-    <Backdrop open={status === 'loading'}>
-      <CircularProgress color="inherit" />
-    </Backdrop>
-  )
-
   return (
     <Stack spacing={4} alignItems="center" className="cart-container">
       {(showTitle ?? true) && <ContentTitle text="Checkout" />}
@@ -46,14 +38,14 @@ const Checkout: React.FC<{
       <CartTotal cart={cart} prefix="Pay" />
 
       <div className="action-buttons">
-        <Button
+        <LoadingButton
           variant="contained"
           startIcon={<CreditCard />}
           onClick={() => checkout(cart)}
-          disabled={status !== 'idle'}
+          loading={status !== 'idle'}
         >
           Buy now
-        </Button>
+        </LoadingButton>
       </div>
     </Stack>
   )
