@@ -14,9 +14,10 @@ export class FakeCatalogStore implements CatalogStore {
 
   categoryById(categoryId: string): Promise<Category | undefined> {
     return new Promise(
-      resolve => setTimeout(() => resolve(
-        this.categories.find(c => c.categoryId === categoryId)
-      ), this.fakeDelayInMs/2)
+      resolve => setTimeout(
+        () => resolve(this.categories.find(c => c.categoryId === categoryId)),
+        this.fakeDelayInMs / 2
+      )
     )
   }
 }

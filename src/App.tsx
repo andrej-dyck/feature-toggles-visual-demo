@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { FakeCatalogStore } from './api/FakeCategoryStore'
+import { FakeCatalogStore } from './api/FakeCatalogStore'
 import { FakeFeatureTogglesApi } from './api/FakeFeatureTogglesApi'
 import { FakeOrders } from './api/FakeOrders'
 import { FakeProductStore } from './api/FakeProductStore'
@@ -16,7 +16,7 @@ import Header from './Navigation/Header'
 const App: React.FC = () => {
   const featureTogglesApi = new FakeFeatureTogglesApi()
   const catalogStore = new FakeCatalogStore()
-  const productStore = new FakeProductStore()
+  const productStore = new FakeProductStore(featureTogglesApi.retrieveToggles())
   const orders = new FakeOrders()
   const { cart, cartActions, cartEvent } = useLocalCart()
 

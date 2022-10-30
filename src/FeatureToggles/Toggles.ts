@@ -4,14 +4,18 @@ export type Toggle = Readonly<{
   enabled: boolean
   // conditions here are for demo purposes; api should provide is-active
   condition?: Partial<{
+    startDate: Date
+    endDate: Date
     canary: {
       percentageOfUsers: 0.1 | 0.2 | 0.3 | 0.4 | 0.5
     }
   }>
 }>
 
-const isActive = (t: Toggle, random: () => number): boolean =>
+const isActive = (t: Toggle, now: Date, random: () => number): boolean =>
   t.enabled
+  && mapValueOr(t.condition?.startDate, start => new Date(start) <= now, true)
+  && mapValueOr(t.condition?.endDate, end => new Date(end) > now, true)
   && mapValueOr(t.condition?.canary?.percentageOfUsers, p => random() < p, true)
 
 const mapValueOr = <V, R>(maybeValue: V | undefined, transform: (v: V) => R, otherwise: R) =>
@@ -22,10 +26,11 @@ export class Toggles {
   static EMPTY = new Toggles([])
 
   constructor(
-    entries: { flag: Flag, toggle: Toggle }[]
+    entries: { flag: Flag, toggle: Toggle }[],
+    now: Date = new Date()
   ) {
     this.entries = entries.map(e => (
-      { ...e, isActiveSnapshot: isActive(e.toggle, Math.random) }
+      { ...e, isActiveSnapshot: isActive(e.toggle, now, Math.random) }
     ))
   }
 

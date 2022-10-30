@@ -51,7 +51,10 @@ const demoToggles = (): TogglesRecord => ({
      } }
   },
   'ops-flag': {
-    'demo1': { enabled: true },
+    'black-friday-deals': { enabled: true, condition: {
+      startDate: new Date(Date.parse('2022-11-25 00:00:00')),
+      endDate: new Date(Date.parse('2022-11-26 00:00:00'))
+    } },
   }
 })
 

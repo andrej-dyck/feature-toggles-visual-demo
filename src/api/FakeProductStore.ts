@@ -1,25 +1,55 @@
+import { opsFlag } from '../FeatureToggles/Flags'
+import { Toggles } from '../FeatureToggles/Toggles'
 import { DetailedProduct, Product, ProductStore } from '../Products/ProductStore'
 
 export class FakeProductStore implements ProductStore {
   constructor(
+    private readonly toggles: Promise<Toggles>,
     private readonly fakeDelayInMs = 250,
     private readonly products = productStubs
   ) {}
 
   inCategory(categoryId: string): Promise<ReadonlyArray<Product>> {
-    return new Promise(
-      resolve => setTimeout(() => resolve(this.products[categoryId] ?? []), this.fakeDelayInMs)
+    return new Promise<ReadonlyArray<Product>>(
+      resolve => setTimeout(
+        () => resolve(this.products[categoryId] ?? []),
+        this.fakeDelayInMs
+      )
+    ).then(
+      async p => {
+        const discount = await this.generalDiscount()
+        return discount ? p.map(applyGeneralDiscount(discount)) : p
+      }
     )
   }
 
   bySku(sku: string): Promise<DetailedProduct | undefined> {
-    return new Promise(
-      resolve => setTimeout(() => resolve(
-        Object.values(this.products).flat().find(p => p.sku === sku)
-      ), this.fakeDelayInMs / 2)
+    return new Promise<DetailedProduct | undefined>(
+      resolve => setTimeout(
+        () => resolve(Object.values(this.products).flat().find(p => p.sku === sku)),
+        this.fakeDelayInMs / 2
+      )
+    ).then(
+      async p => {
+        if (!p) return p
+        const discount = await this.generalDiscount()
+        return discount ? applyGeneralDiscount(discount)(p) : p
+      }
+    )
+  }
+
+  private generalDiscount(): Promise<{ inPercent: number } | undefined> {
+    return this.toggles.then(
+      t => t.isActive(opsFlag('black-friday-deals')) ? { inPercent: 19 } : undefined
     )
   }
 }
+
+const applyGeneralDiscount = (discount: { inPercent: number }) =>
+  <T extends Product | DetailedProduct>(product: T): T => ({
+    ...product,
+    discount: { inPercent: Math.max(discount.inPercent, product.discount?.inPercent ?? 0) }
+  })
 
 const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
   'mens-outerwear': [{
@@ -58,7 +88,7 @@ const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
     title: 'Vastrm Hoodie',
     description: 'The ultimate in fit and fabric, this Vastrm hoodie doesn\'t disappoint. Made from soft pique fabric, the lightweight full-zip features a halfmoon accent and matching hoodie strings.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Additional Features:&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;100% cotton.&lt;/li&gt;&lt;li&gt;Hidden phone pocket neatly cradles your digital device.&amp;nbsp;&lt;/li&gt;&lt;li&gt;Available in charcoal grey with red strings and hood. White Google logo is embroidered at left bicep.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;',
     price: { value: 200.00, code: 'EUR' },
-    discount: { inPercent: 20 },
+    discount: { inPercent: 25 },
   }, {
     sku: '10-14158',
     title: 'Recycled Plastic Bottle Hoodie - Green',
