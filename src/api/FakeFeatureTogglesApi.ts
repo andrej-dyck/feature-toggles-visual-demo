@@ -10,13 +10,28 @@ export class FakeFeatureTogglesApi implements FeatureTogglesApi {
   ) {}
 
   retrieveToggles(): Promise<Toggles> {
-    return Promise.resolve(
-      parse(
-        //this.localStorage.retrieveOrSave<TogglesRecord>('toggles', () =>
-        this.toggles()
-        //)
-      )
-    )
+    return Promise.resolve(parse(this.record()))
+  }
+
+  private record(): TogglesRecord {
+    return this.localStorage.retrieveOrSave<TogglesRecord>('toggles', () => this.toggles())
+  }
+
+  saveToggle(flag: Flag, toggle: Toggle): Promise<boolean> {
+    const record = this.record()// as Record<string, Record<string, Toggle>>
+    this.saveRecord({
+      ...record,
+      [flag.type]: {
+        ...(record[flag.type] ?? {}),
+        [flag.name]: toggle
+      }
+    })
+
+    return Promise.resolve(true)
+  }
+
+  private saveRecord(record: TogglesRecord): void {
+    this.localStorage.saveRecord('toggles', record)
   }
 }
 

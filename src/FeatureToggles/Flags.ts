@@ -10,8 +10,8 @@
  *   "separating [feature] release from [code] deployment."
  */
 export const ReleaseFlags = [
-  { name: 'checkout-with-added-item-notification' },
   { name: 'quick-add-to-cart-button' },
+  { name: 'checkout-with-added-item-notification' },
   { name: 'show-order-process-steps' },
 ] as const
 

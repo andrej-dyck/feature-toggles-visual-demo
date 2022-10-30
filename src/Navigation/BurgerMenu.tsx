@@ -18,7 +18,7 @@ const BurgerMenu: React.FC<{ cart: Cart }> = ({ cart }) => {
   const [drawerState, toggleDrawer] = useState<'open' | 'closed'>('closed')
 
   const location = useLocation()
-  useEffect(() => { toggleDrawer('closed') }, [location])
+  useEffect(() => toggleDrawer('closed'), [location])
 
   return (<>
     <IconButton edge="start" color="inherit" aria-label="menu" onClick={() => toggleDrawer('open')}>

@@ -1,30 +1,34 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react'
 import { never } from '../api/never'
 import { FeatureTogglesApi, Flag, Toggles, useApiToggles } from './FeatureTogglesApi'
+import FeatureTogglesSettings from './FeatureTogglesSettings'
 
 const FeatureToggles: React.FC<{
   children: React.ReactNode
   api: FeatureTogglesApi
 }> = ({ children, api }) => {
   const [toggles, setToggles] = useState<Toggles>(Toggles.EMPTY)
-  const { data: apiToggles, status } = useApiToggles(api)
 
+  /* api query */
+  const { data: apiToggles, status } = useApiToggles(api)
   useEffect(() => {
     if (apiToggles && status === 'success') setToggles(apiToggles)
   }, [apiToggles, status])
 
+  /* context */
   const isToggleActive = (f: Flag) => toggles.isActive(f)
+  const readFunctions = useMemo(() => ({ isToggleActive }), [toggles])
 
-  const value = useMemo(() => ({ isToggleActive }), [toggles])
   return (
-    <context.Provider value={value}>
+    <ReadContext.Provider value={readFunctions}>
       {children}
-    </context.Provider>
+      <FeatureTogglesSettings api={api} toggles={toggles} />
+    </ReadContext.Provider>
   )
 }
 
 export const useFeatureToggles = () =>
-  useContext(context)
+  useContext(ReadContext)
   ?? never(`${useFeatureToggles.name} must be used withing ${FeatureToggles.name}`)
 
 export const useFeatureToggle = (f: Flag) => {
@@ -32,7 +36,7 @@ export const useFeatureToggle = (f: Flag) => {
   return { isActive: isToggleActive(f) }
 }
 
-const context = createContext<{
+const ReadContext = createContext<{
   isToggleActive: (flag: Flag) => boolean
 } | undefined>(undefined)
 
