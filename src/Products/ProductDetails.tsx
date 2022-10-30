@@ -23,9 +23,8 @@ const ProductDetails: React.FC<{
   const { sku } = useParams()
   const { data: product, status } = useProduct(store, sku ?? '')
 
-  const addToCart = (p: Product, size: Size, quantity: number) => {
+  const addToCart = (p: Product, size: Size, quantity: number) =>
     cartActions.addItem({ ...p, size, quantity })
-  }
 
   if (status === 'success' && !!product) return (
     <ProductLayout
@@ -69,9 +68,7 @@ const ProductCard: React.FC<{
   const [size, chooseSize] = useState<Size>('M')
   const [quantity, chooseQuantity] = useState<number>(1)
 
-  const handleAddToCart = () => {
-    addToCart(product, size, quantity)
-  }
+  const handleAddToCart = () => addToCart(product, size, quantity)
 
   return <>
     <div>

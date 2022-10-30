@@ -1,3 +1,5 @@
+export type Flag = ReleaseFlag | OpsFlag
+
 /**
  * Release Flags
  *
@@ -28,7 +30,7 @@ export const releaseFlag = (name: ReleaseFlag['name']): ReleaseFlag => ({ name, 
  * - Retire and remove ops flags as soon as confidence in operations is gained
  */
 export const OpsFlags = [
-  { name: 'demo1' },
+  { name: 'black-friday-deals' },
 ] as const
 
 export type OpsFlag = typeof OpsFlags[number] & { type: 'ops-flag' }

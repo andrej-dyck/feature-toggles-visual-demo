@@ -96,18 +96,29 @@ const ToggleSwitches: React.FC<{
 }> = ({ flags, api, toggles }) => {
   const { saveToggle } = useApiSaveToggle(api)
 
-  const handleSwitch = (f: Flag, enabled: boolean) => saveToggle(f, { enabled })
+  const handleSwitch = (f: Flag, enabled: boolean) => {
+    const toggle = toggles.by(f)
+    saveToggle(f, toggle ? { ...toggle, enabled } : { enabled })
+  }
 
   return (
     <Stack spacing={2}>
-      {flags.map((f, i) => (<span key={i} className="toggle-switch">
-        <Switch
-          checked={toggles.isEnabled(f)}
-          onChange={e => handleSwitch(f, e.target.checked)}
-          color="secondary"
-        />
-        <Typography variant="body1">{f.name}</Typography>
-      </span>))}
+      {flags.map((f, i) => {
+        const condition = useMemo(() => toggles.by(f)?.condition, [toggles])
+        return (
+          <span key={i} className="toggle-switch">
+            <Switch
+              checked={toggles.isEnabled(f)}
+              onChange={e => handleSwitch(f, e.target.checked)}
+              color="secondary"
+            />
+            <Typography variant="body1">{f.name}</Typography>
+            {condition && (
+              <Typography variant="body1" color="textSecondary">{JSON.stringify(condition)}</Typography>
+            )}
+          </span>
+        )
+      })}
     </Stack>
   )
 }

@@ -3,7 +3,9 @@ import { Query } from '../api/Query'
 import { FeatureTogglesApi, Flag, Toggle, Toggles } from './FeatureTogglesApi'
 
 export const useApiToggles = (api: FeatureTogglesApi): Query<Toggles> =>
-  useQuery(['toggles'], () => api.retrieveToggles())
+  useQuery(['toggles'], () => api.retrieveToggles(), {
+    refetchOnWindowFocus: false // this is off for demo purposes
+  })
 
 export const useApiSaveToggle = (api: FeatureTogglesApi): {
   saveToggle: (flag: Flag, toggle: Toggle) => void
