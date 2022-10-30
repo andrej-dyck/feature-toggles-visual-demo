@@ -43,6 +43,7 @@
   margin-left: auto;
   margin-top: auto;
   margin-bottom: 10px;
+  text-align: right;
 }
 
 .product-info-container .actions > * {

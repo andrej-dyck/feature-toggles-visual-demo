@@ -1,5 +1,5 @@
 import { Currency, plus, ZERO } from '../Products/Currency'
-import { Product } from '../Products/ProductStore'
+import { Product, productPrice } from '../Products/ProductStore'
 import { Size } from '../Products/Size'
 
 export type Cart = Readonly<{
@@ -37,8 +37,8 @@ export const withChangedItemQuantity = (cart: Cart, item: Pick<CartItem, 'itemId
 export const totalPrice = (cart: Pick<Cart, 'items'>): Currency =>
   cart.items.reduce((total, item) => plus(total, itemPrice(item)), ZERO)
 
-export const itemPrice = ({ quantity, price }: CartItem): Currency => ({
-  value: quantity * price.value,
+export const itemPrice = ({ quantity, price, discount }: CartItem): Currency => ({
+  value: quantity * productPrice({ price, discount }).value,
   code: price.code
 })
 

@@ -14,6 +14,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
 import ContentTitle from '../Layouts/ContentTitle'
 import { formatCurrency } from '../Products/Currency'
+import DiscountBadge from '../Products/DiscountBadge'
 import { Product, productImgSrc } from '../Products/ProductStore'
 import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice } from './Cart'
 import { CartActions } from './CartActions'
@@ -38,7 +39,7 @@ const CartSummary: React.FC<{
     <Stack spacing={4} alignItems="center" className="cart-container">
       <Stack spacing={0} alignItems="center">
         {(showTitle ?? true) && <ContentTitle text="Shopping Cart" />}
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" color="text.secondary">
           ({noOfItems} {noOfItems === 1 ? 'item' : 'items'})
         </Typography>
       </Stack>
@@ -46,7 +47,7 @@ const CartSummary: React.FC<{
       <div className="cart-items-container">
         {hasItems(cart) ? cart.items.map(item => (
           <ItemCard key={item.itemId} item={item} onQuantityChanged={handleQuantityChange} />)
-        ) : <Typography variant="h5" color="textSecondary" className="centered-text">
+        ) : <Typography variant="h5" color="text.secondary" className="centered-text">
           Your cart is empty 😥
         </Typography>}
       </div>
@@ -83,15 +84,17 @@ const ItemCard: React.FC<{
       </LinkToProduct>
       <CardContent>
         <Stack justifyContent="center" alignItems="flex-start">
-          <LinkToProduct product={item}>
-            <Typography variant="body1">{item.title}</Typography>
-          </LinkToProduct>
-          <Typography variant="body2" color="textSecondary">Size {item.size}</Typography>
+          <DiscountBadge product={item} anchor="left">
+            <LinkToProduct product={item}>
+              <Typography variant="body1">{item.title}</Typography>
+            </LinkToProduct>
+          </DiscountBadge>
+          <Typography variant="body2" color="text.secondary">Size {item.size}</Typography>
         </Stack>
       </CardContent>
       <CardActions className="item-card-actions">
         <QuantityInput quantity={item.quantity} onChange={(q) => onQuantityChanged(item, q)} />
-        <Typography variant="body1" color="textSecondary">
+        <Typography variant="body1" color="text.secondary">
           {formatCurrency(itemPrice(item))}
         </Typography>
         <IconButton onClick={() => onQuantityChanged(item, 0)}>

@@ -17,8 +17,9 @@ import { releaseFlag } from '../FeatureToggles/Flags'
 import GridLayout from '../Layouts/GridLayout'
 import GridSkeleton from '../Layouts/GridSkeleton'
 import { formatCurrency } from './Currency'
+import DiscountBadge from './DiscountBadge'
 import './ListCategory.css'
-import { Product, productImgSrc, ProductStore, useProductsInCategory } from './ProductStore'
+import { hasDiscount, Product, productImgSrc, productPrice, ProductStore, useProductsInCategory } from './ProductStore'
 
 const ListCategory: React.FC<{
   store: ProductStore
@@ -46,7 +47,7 @@ const ListCategory: React.FC<{
   )
 
   return (
-    <Typography variant="h6" color="textSecondary">
+    <Typography variant="h6" color="text.secondary">
       No products found.
     </Typography>
   )
@@ -58,6 +59,7 @@ const ProductCard: React.FC<{
   cartActions: CartActions
 }> = ({ product, addToCartBtnEnabled, cartActions }) => {
   const navigate = useNavigate()
+  const price = productPrice(product)
 
   return (
     <Card elevation={1} className="product-card">
@@ -69,7 +71,7 @@ const ProductCard: React.FC<{
           className="card-image"
         />
         <CardContent className="card-content">
-          <Typography variant="body2" color="textSecondary">{product.sku}</Typography>
+          <Typography variant="body2" color="text.secondary">{product.sku}</Typography>
           <Typography variant="body1">{product.title}</Typography>
         </CardContent>
       </CardActionArea>
@@ -77,19 +79,26 @@ const ProductCard: React.FC<{
         <IconButton aria-label="add to favorites" disabled={true}>
           <FavoriteBorderOutlined />
         </IconButton>
-        {addToCartBtnEnabled ? (
-          <Button
-            variant="contained"
-            startIcon={<ShoppingCart />}
-            onClick={() => cartActions.addItem({ ...product, size: 'M', quantity: 1 })}
-          >
-            {formatCurrency(product.price)}
-          </Button>
-        ) : (
-          <Typography variant="h6" color="textSecondary" className="price-tag">
-            {formatCurrency(product.price)}
-          </Typography>
-        )}
+        <DiscountBadge product={product} anchor="left">
+          {addToCartBtnEnabled ? (
+            <Button
+              variant="contained"
+              startIcon={<ShoppingCart />}
+              onClick={() => cartActions.addItem({ ...product, size: 'M', quantity: 1 })}
+              color={hasDiscount(product) ? 'warning' : 'primary'}
+            >
+              {formatCurrency(price)}
+            </Button>
+          ) : (
+            <Typography
+              variant="h6"
+              color={hasDiscount(product) ? 'text.primary' : 'text.secondary'}
+              className="price-tag"
+            >
+              {formatCurrency(price)}
+            </Typography>
+          )}
+        </DiscountBadge>
       </CardActions>
     </Card>
   )

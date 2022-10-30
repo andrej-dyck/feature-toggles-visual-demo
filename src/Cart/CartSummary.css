@@ -25,6 +25,7 @@
 }
 
 .quantity-input {
+  min-width: 80px;
   max-width: 80px;
   margin-right: 15px;
 }

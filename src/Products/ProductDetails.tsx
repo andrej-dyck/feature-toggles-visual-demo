@@ -12,8 +12,9 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { CartActions } from '../Cart/CartActions'
 import { formatCurrency } from './Currency'
+import DiscountBadge from './DiscountBadge'
 import './ProductDetails.css'
-import { DetailedProduct, Product, productImgSrc, ProductStore, useProduct } from './ProductStore'
+import { DetailedProduct, Product, productImgSrc, productPrice, ProductStore, useProduct } from './ProductStore'
 import { availableSizes, Size } from './Size'
 
 const ProductDetails: React.FC<{
@@ -41,7 +42,7 @@ const ProductDetails: React.FC<{
   )
 
   return (
-    <Typography variant="h6" color="textSecondary">
+    <Typography variant="h6" color="text.secondary">
       Product {sku} not found.
     </Typography>
   )
@@ -72,12 +73,12 @@ const ProductCard: React.FC<{
 
   return <>
     <div>
-      <Typography variant="h5" color="textSecondary" marginBottom={0}>{product.title}</Typography>
-      <Typography variant="body2" color="textSecondary">{product.sku}</Typography>
+      <Typography variant="h5" color="text.secondary" marginBottom={0}>{product.title}</Typography>
+      <Typography variant="body2" color="text.secondary">{product.sku}</Typography>
     </div>
     <div className="description">
       <Typography variant="h6">Description</Typography>
-      <Typography variant="body2" component="div" color="textSecondary">
+      <Typography variant="body2" component="div" color="text.secondary">
         <div dangerouslySetInnerHTML={{ __html: unescapeHtml(product.description) }} />
       </Typography>
     </div>
@@ -94,9 +95,13 @@ const ProductCard: React.FC<{
         values={availableQuantities.map(n => n.toString())}
         onChange={n => chooseQuantity(Number(n))}
       />
-      <Typography variant="h6" className="price-tag">
-        {formatCurrency(product.price)}
-      </Typography>
+      <div className="price-tag">
+        <DiscountBadge product={product}>
+          <Typography variant="h6">
+            {formatCurrency(productPrice(product))}
+          </Typography>
+        </DiscountBadge>
+      </div>
     </div>
     <div className="actions">
       <Button variant="contained" startIcon={<ShoppingCart />} onClick={handleAddToCart}>

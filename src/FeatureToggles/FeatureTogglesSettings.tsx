@@ -114,7 +114,7 @@ const ToggleSwitches: React.FC<{
             />
             <Typography variant="body1">{f.name}</Typography>
             {condition && (
-              <Typography variant="body1" color="textSecondary">{JSON.stringify(condition)}</Typography>
+              <Typography variant="body1" color="text.secondary">{JSON.stringify(condition)}</Typography>
             )}
           </span>
         )

@@ -27,6 +27,7 @@ const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
     title: 'Men\'s Tech Shell Full-Zip',
     description: 'A versatile full-zip that you can wear all day long and even to the gym. This technical shell features moisture-wicking fabric, added stretch and a hidden pocket for your smartphone or media player.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Features:&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;100% polyester.&lt;/li&gt;&lt;li&gt;Smooth, technical front with textured mesh back.&lt;/li&gt;&lt;li&gt;Drawstring bottom for adjustable fit.&lt;/li&gt;&lt;li&gt;Raglan sleeves.&lt;/li&gt;&lt;li&gt;Available in forest green with the white Google logo embroidered at left chest.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;',
     price: { value: 50.20, code: 'EUR' },
+    discount: { inPercent: 15 },
   }, {
     sku: '10-14154',
     title: 'Anvil L/S Crew Neck - Grey',
@@ -57,6 +58,7 @@ const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
     title: 'Vastrm Hoodie',
     description: 'The ultimate in fit and fabric, this Vastrm hoodie doesn\'t disappoint. Made from soft pique fabric, the lightweight full-zip features a halfmoon accent and matching hoodie strings.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Additional Features:&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;100% cotton.&lt;/li&gt;&lt;li&gt;Hidden phone pocket neatly cradles your digital device.&amp;nbsp;&lt;/li&gt;&lt;li&gt;Available in charcoal grey with red strings and hood. White Google logo is embroidered at left bicep.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;',
     price: { value: 200.00, code: 'EUR' },
+    discount: { inPercent: 20 },
   }, {
     sku: '10-14158',
     title: 'Recycled Plastic Bottle Hoodie - Green',
@@ -118,6 +120,7 @@ const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
     title: 'Ladies Voyage Fleece Jacket',
     description: '&lt;div&gt;Perhaps the equivalent to that comfort blanket you had years ago is a cozy fleece. This full-zip is the perfect layering piece for those \'in-between\' months when mother nature just can\'t make up her mind.&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Features:&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;100% polyester anti-pill yarn fleece.&lt;/li&gt;&lt;li&gt;100% polyester taffeta lining in sleeves.&lt;/li&gt;&lt;li&gt;Tricot-lined lower pockets with reverse coil zippers.&lt;/li&gt;&lt;li&gt;Available in purple with the white Google logo embroidered at left chest.&lt;/li&gt;&lt;li&gt;&lt;b&gt;Please note! Sizing runs larger than normal. Consider ordering a size smaller than normal.&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;',
     price: { value: 48.00, code: 'EUR' },
+    discount: { inPercent: 20 },
   }, {
     sku: '10-24098',
     title: 'Ladies Pullover L/S Hood',
@@ -169,6 +172,7 @@ const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
     title: 'Go Gopher T-Shirt in Teal',
     description: 'Go anywhere in style when wearing this t-shirt featuring The Go Gopher. &amp;nbsp;Tee is made of 100% combed, ring-spun cotton jersey fabric. Available in teal with the Go Gopher screen printed on center.',
     price: { value: 10.95, code: 'EUR' },
+    discount: { inPercent: 10 },
   }, {
     sku: '10-13285',
     title: 'Android Ringspun T-Shirt - Green',
@@ -410,6 +414,7 @@ const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
     title: 'Ladies Blueprint for a Better Inbox T-Shirt',
     description: 'The "Blueprint for  better Inbox" now available for the ladies! This USA made American Apparel t-shirt sports a more fitted design and &amp;nbsp;the new Inbox logo.&amp;nbsp;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Additional Features:&amp;nbsp;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;50% cotton / 50% polyester for a super soft fit.&lt;/li&gt;&lt;li&gt;Available in royal blue heather with the "New Inbox: logo screen printed on the center chest.&amp;nbsp;&lt;/li&gt;&lt;li&gt;&lt;b&gt;Sizing runs smaller than normal. Please reference sizing chart prior to ordering.&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;',
     price: { value: 14.30, code: 'EUR' },
+    discount: { inPercent: 10 },
   }, {
     sku: '10-23174',
     title: 'Ladies Cotton Poly w/ Thermal Tee',

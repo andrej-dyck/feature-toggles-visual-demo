@@ -24,7 +24,7 @@ const Catalog: React.FC<{ store: CatalogStore }> = ({ store }) => {
   )
 
   return (
-    <Typography variant="h6" color="textSecondary">
+    <Typography variant="h6" color="text.secondary">
       Sorry, we have no products at the moment.
     </Typography>
   )

@@ -11,3 +11,8 @@ export const plus = (c1: Currency, c2: Currency) => ({
   value: c1.value + c2.value,
   code: c1.code === c2.code ? c1.code : never('multiple currencies not supported')
 })
+
+export const applyDiscount = (price: Currency, discount: { inPercent: number }) => ({
+  value: price.value * Math.max(1 - discount.inPercent / 100, 0),
+  code: price.code
+})
