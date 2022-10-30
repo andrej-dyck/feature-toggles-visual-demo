@@ -5,7 +5,7 @@ import { FakeCatalogStore } from './api/FakeCategoryStore'
 import { FakeFeatureTogglesApi } from './api/FakeFeatureTogglesApi'
 import { FakeOrders } from './api/FakeOrders'
 import { FakeProductStore } from './api/FakeProductStore'
-import { useCart } from './api/LocalCart'
+import { useLocalCart } from './api/LocalCart'
 import './App.css'
 import AppRoutes from './AppRoutes'
 import CartNotifications from './Cart/CartNotifications'
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   const catalogStore = new FakeCatalogStore()
   const productStore = new FakeProductStore()
   const orders = new FakeOrders()
-  const { cart, cartActions, cartEvent } = useCart()
+  const { cart, cartActions, cartEvent } = useLocalCart()
 
   return (
     <Providers featureTogglesApi={featureTogglesApi}>

@@ -1,5 +1,3 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
-import { Query } from '../api/Query'
 import { OpsFlag, ReleaseFlag } from './Flags'
 
 export interface FeatureTogglesApi {
@@ -9,6 +7,9 @@ export interface FeatureTogglesApi {
 
   resetToggles(): Promise<void>
 }
+
+export type Flag = ReleaseFlag | OpsFlag
+export type Toggle = Readonly<{ enabled: boolean }>
 
 export class Toggles {
 
@@ -33,41 +34,4 @@ export class Toggles {
   }
 }
 
-export type Flag = ReleaseFlag | OpsFlag
-export type Toggle = Readonly<{ enabled: boolean }>
-
-export const useApiToggles = (api: FeatureTogglesApi): Query<Toggles> =>
-  useQuery(['toggles'], () => api.retrieveToggles())
-
-export const useApiSaveToggle = (api: FeatureTogglesApi): {
-  saveToggle: (flag: Flag, toggle: Toggle) => void
-} & Query<{ saved: boolean }> => {
-  const saveQuery = (arg: { flag: Flag, toggle: Toggle }) =>
-    api.saveToggle(arg.flag, arg.toggle).then(saved => ({ saved }))
-
-  const queryClient = useQueryClient()
-  const { data, status, mutate } = useMutation(saveQuery, {
-    onSuccess: ({ saved }) => {
-      if (saved) queryClient.invalidateQueries(['toggles'])
-    }
-  })
-
-  return {
-    saveToggle: (flag, toggle) => mutate({ flag, toggle }),
-    status,
-    data,
-  }
-}
-
-export const useApiResetToggles = (api: FeatureTogglesApi): {
-  resetToggles: () => void
-} & Query<void> => {
-  const resetQuery = () => api.resetToggles()
-
-  const queryClient = useQueryClient()
-  const { data, status, mutate } = useMutation(resetQuery, {
-    onSuccess: () => queryClient.invalidateQueries(['toggles'])
-  })
-
-  return { resetToggles: () => mutate(), status, data }
-}
+export * from './useFeatureTogglesApi'

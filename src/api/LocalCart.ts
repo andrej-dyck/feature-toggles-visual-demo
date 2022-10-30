@@ -4,7 +4,7 @@ import { CartActions } from '../Cart/CartActions'
 import { CartEvent } from '../Cart/CartNotifications'
 import { LocalStorage } from './LocalStorage'
 
-export const useCart = (
+export const useLocalCart = (
   localStorage: LocalStorage = new LocalStorage()
 ): {
   cart: Cart,
