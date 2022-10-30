@@ -16,4 +16,8 @@ export class LocalStorage {
     }
     return record
   }
+
+  removeRecord(key: string): void {
+    localStorage.removeItem(key)
+  }
 }

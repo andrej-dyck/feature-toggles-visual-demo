@@ -1,3 +1,4 @@
+import RestartAlt from '@mui/icons-material/RestartAlt'
 import Settings from '@mui/icons-material/Settings'
 import Box from '@mui/material/Box'
 import Drawer from '@mui/material/Drawer'
@@ -8,9 +9,9 @@ import Tab from '@mui/material/Tab'
 import Tabs from '@mui/material/Tabs'
 import Typography from '@mui/material/Typography'
 import React, { useMemo, useState } from 'react'
-import { FeatureTogglesApi, Flag, Toggles, useApiSaveToggle } from './FeatureTogglesApi'
-import { opsFlag, OpsFlag, OpsFlags, releaseFlag, ReleaseFlag, ReleaseFlags } from './Flags'
+import { FeatureTogglesApi, Flag, Toggles, useApiResetToggles, useApiSaveToggle } from './FeatureTogglesApi'
 import './FeatureTogglesSettings.css'
+import { opsFlag, OpsFlag, OpsFlags, releaseFlag, ReleaseFlag, ReleaseFlags } from './Flags'
 
 const FeatureTogglesSettings: React.FC<{
   api: FeatureTogglesApi
@@ -50,6 +51,7 @@ const TogglesPanel: React.FC<{
 
   const releaseFlags = useMemo(() => ReleaseFlags.map(f => releaseFlag(f.name)), [])
   const opsFlags = useMemo(() => OpsFlags.map(f => opsFlag(f.name)), [])
+  const { resetToggles } = useApiResetToggles(api)
 
   return (<>
     <Tabs
@@ -69,6 +71,16 @@ const TogglesPanel: React.FC<{
     <TabPanel id="ops-toggles" hidden={tabIndex !== 1}>
       <ToggleSwitches flags={opsFlags} api={api} toggles={toggles} />
     </TabPanel>
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0 }}>
+      <IconButton
+        aria-label="Reset Feature Toggles"
+        size="large"
+        color="secondary"
+        onClick={resetToggles}
+      >
+        <RestartAlt />
+      </IconButton>
+    </Box>
   </>)
 }
 

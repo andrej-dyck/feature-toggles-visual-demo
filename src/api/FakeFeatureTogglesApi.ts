@@ -33,6 +33,11 @@ export class FakeFeatureTogglesApi implements FeatureTogglesApi {
   private saveRecord(record: TogglesRecord): void {
     this.localStorage.saveRecord('toggles', record)
   }
+
+  resetToggles(): Promise<void> {
+    this.localStorage.removeRecord('toggles')
+    return Promise.resolve(undefined)
+  }
 }
 
 const demoToggles = (): TogglesRecord => ({

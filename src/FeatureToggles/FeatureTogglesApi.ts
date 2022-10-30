@@ -6,6 +6,8 @@ export interface FeatureTogglesApi {
   retrieveToggles(): Promise<Toggles>
 
   saveToggle(flag: Flag, toggle: Toggle): Promise<boolean>
+
+  resetToggles(): Promise<void>
 }
 
 export class Toggles {
@@ -55,4 +57,17 @@ export const useApiSaveToggle = (api: FeatureTogglesApi): {
     status,
     data,
   }
+}
+
+export const useApiResetToggles = (api: FeatureTogglesApi): {
+  resetToggles: () => void
+} & Query<void> => {
+  const resetQuery = () => api.resetToggles()
+
+  const queryClient = useQueryClient()
+  const { data, status, mutate } = useMutation(resetQuery, {
+    onSuccess: () => queryClient.invalidateQueries(['toggles'])
+  })
+
+  return { resetToggles: () => mutate(), status, data }
 }
