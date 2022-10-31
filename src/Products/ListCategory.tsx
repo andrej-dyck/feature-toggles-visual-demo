@@ -1,4 +1,5 @@
-import FavoriteBorderOutlined from '@mui/icons-material/FavoriteBorderOutlined'
+import Favorite from '@mui/icons-material/Favorite'
+import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
 import ShoppingCart from '@mui/icons-material/ShoppingCart'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
@@ -6,9 +7,10 @@ import CardActionArea from '@mui/material/CardActionArea'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
+import { red } from '@mui/material/colors'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
 import { CartActions } from '../Cart/CartActions'
@@ -19,6 +21,7 @@ import GridSkeleton from '../Layouts/GridSkeleton'
 import { formatCurrency } from './Currency'
 import DiscountBadge from './DiscountBadge'
 import './ListCategory.css'
+import { FavoriteProductIcon } from './Favorites'
 import { hasDiscount, Product, productImgSrc, productPrice, ProductStore, useProductsInCategory } from './ProductStore'
 
 const ListCategory: React.FC<{
@@ -76,9 +79,7 @@ const ProductCard: React.FC<{
         </CardContent>
       </CardActionArea>
       <CardActions className="card-actions">
-        <IconButton aria-label="add to favorites" disabled={true}>
-          <FavoriteBorderOutlined />
-        </IconButton>
+        <FavoriteProductIcon />
         <DiscountBadge product={product} anchor="left">
           {addToCartBtnEnabled ? (
             <Button

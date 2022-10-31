@@ -46,7 +46,8 @@ const demoToggles = (): TogglesRecord => ({
       canary: { percentageOfUsers: 0.3 }
     } },
     'checkout-with-added-item-notification': { enabled: false },
-    'show-order-process-steps': { enabled: true }
+    'show-order-process-steps': { enabled: true },
+    'wip-favorites-feature': { enabled: false },
   },
   'ops-flag': {
     'google-pay-button': { enabled: false },
