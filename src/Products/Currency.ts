@@ -9,6 +9,7 @@ export const formatCurrency = (c: Currency, locale = 'de-DE') =>
 
 export const plus = (c1: Currency, c2: Currency) => ({
   value: c1.value + c2.value,
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   code: c1.code === c2.code ? c1.code : never('multiple currencies not supported')
 })
 

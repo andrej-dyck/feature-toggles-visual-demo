@@ -5,7 +5,6 @@ export interface FeatureTogglesApi {
   retrieveToggles(): Promise<Toggles>
 
   saveToggle(flag: Flag, toggle: Toggle): Promise<boolean>
-
   resetToggles(): Promise<void>
 }
 

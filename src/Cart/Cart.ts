@@ -4,7 +4,7 @@ import { Size } from '../Products/Size'
 
 export type Cart = Readonly<{
   cartId: string
-  items: ReadonlyArray<CartItem>
+  items: readonly CartItem[]
 }>
 
 export type CartItem = Product & Readonly<{

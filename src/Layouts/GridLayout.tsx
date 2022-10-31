@@ -1,8 +1,8 @@
 import Grid from '@mui/material/Grid'
 import React from 'react'
 
-const GridLayout: React.FC<{ children?: React.ReactNode }> = ({ children }) => {
-  const items = Array.isArray(children) ? [...children] : [children]
+const GridLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const items = Array.isArray(children) ? children : [children]
   return (
     <Grid
       container

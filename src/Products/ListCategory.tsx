@@ -1,5 +1,3 @@
-import Favorite from '@mui/icons-material/Favorite'
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder'
 import ShoppingCart from '@mui/icons-material/ShoppingCart'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
@@ -7,10 +5,8 @@ import CardActionArea from '@mui/material/CardActionArea'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
-import { red } from '@mui/material/colors'
-import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
-import React, { useState } from 'react'
+import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
 import { CartActions } from '../Cart/CartActions'
@@ -20,8 +16,8 @@ import GridLayout from '../Layouts/GridLayout'
 import GridSkeleton from '../Layouts/GridSkeleton'
 import { formatCurrency } from './Currency'
 import DiscountBadge from './DiscountBadge'
-import './ListCategory.css'
 import { FavoriteProductIcon } from './Favorites'
+import './ListCategory.css'
 import { hasDiscount, Product, productImgSrc, productPrice, ProductStore, useProductsInCategory } from './ProductStore'
 
 const ListCategory: React.FC<{
@@ -30,7 +26,6 @@ const ListCategory: React.FC<{
 }> = ({ store, cartActions }) => {
   const { categoryId } = useParams()
   const { data: products, status } = useProductsInCategory(store, categoryId ?? '')
-  const { isActive: addToCartBtnEnabled } = useFeatureToggle(releaseFlag('quick-add-to-cart-button'))
 
   if (status === 'success' && (products?.length ?? 0) > 0) return (
     <GridLayout>
@@ -38,7 +33,6 @@ const ListCategory: React.FC<{
         <ProductCard
           key={p.sku}
           product={p}
-          addToCartBtnEnabled={addToCartBtnEnabled}
           cartActions={cartActions}
         />))
       }
@@ -60,7 +54,9 @@ const ProductCard: React.FC<{
   product: Product,
   addToCartBtnEnabled?: boolean
   cartActions: CartActions
-}> = ({ product, addToCartBtnEnabled, cartActions }) => {
+}> = ({ product, cartActions }) => {
+  const { isActive: addToCartBtnEnabled } = useFeatureToggle(releaseFlag('quick-add-to-cart-button'))
+
   const navigate = useNavigate()
   const price = productPrice(product)
 

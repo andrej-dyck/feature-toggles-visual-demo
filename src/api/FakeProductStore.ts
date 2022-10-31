@@ -9,9 +9,10 @@ export class FakeProductStore implements ProductStore {
     private readonly products = productStubs
   ) {}
 
-  inCategory(categoryId: string): Promise<ReadonlyArray<Product>> {
-    return new Promise<ReadonlyArray<Product>>(
+  inCategory(categoryId: string): Promise<readonly Product[]> {
+    return new Promise<readonly Product[]>(
       resolve => setTimeout(
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         () => resolve(this.products[categoryId] ?? []),
         this.fakeDelayInMs
       )
@@ -51,7 +52,7 @@ const applyGeneralDiscount = (discount: { inPercent: number }) =>
     discount: { inPercent: Math.max(discount.inPercent, product.discount?.inPercent ?? 0) }
   })
 
-const productStubs: Record<string, ReadonlyArray<DetailedProduct>> = {
+const productStubs: Record<string, readonly DetailedProduct[]> = {
   'mens-outerwear': [{
     sku: '10-15068',
     title: 'Men\'s Tech Shell Full-Zip',

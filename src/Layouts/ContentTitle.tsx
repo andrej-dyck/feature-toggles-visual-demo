@@ -14,7 +14,7 @@ const ContentTitle: React.FC<{
         : text.status === 'success' ? text.data ?? ''
           : ''
 
-  if (!outputText) return (<></>)
+  if (outputText === '') return (<></>)
 
   return (
     <div className="centered">

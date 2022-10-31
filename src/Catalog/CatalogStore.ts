@@ -1,6 +1,5 @@
 export interface CatalogStore {
-  allCategories(): Promise<ReadonlyArray<Category>>
-
+  allCategories(): Promise<readonly Category[]>
   categoryById(categoryId: string): Promise<Category | undefined>
 }
 

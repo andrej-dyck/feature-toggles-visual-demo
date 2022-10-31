@@ -114,7 +114,7 @@ const ItemCard: React.FC<{
 
 const LinkToProduct: React.FC<{
   product: Pick<Product, 'sku'>,
-  children?: React.ReactNode
+  children: React.ReactNode
 }> = ({ product, children }) =>
   <Link to={appRoutes.product(product.sku)}>
     {children}

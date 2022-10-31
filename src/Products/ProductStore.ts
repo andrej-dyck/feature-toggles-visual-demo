@@ -1,7 +1,7 @@
 import { applyDiscount, Currency } from './Currency'
 
 export interface ProductStore {
-  inCategory(categoryId: string): Promise<ReadonlyArray<Product>>
+  inCategory(categoryId: string): Promise<readonly Product[]>
   bySku(sku: string): Promise<DetailedProduct | undefined>
 }
 
@@ -13,10 +13,10 @@ export type Product = Readonly<{
 }>
 
 export const productPrice = ({ discount, price }: Pick<Product, 'price' | 'discount'>) =>
-  discount && discount.inPercent > 0 ? applyDiscount(price, discount) : price
+  !!discount && discount.inPercent > 0 ? applyDiscount(price, discount) : price
 
 export const hasDiscount = ({ discount }: Pick<Product, 'discount'>) =>
-  discount && discount.inPercent > 0
+  !!discount && discount.inPercent > 0
 
 export const productImgSrc = (p: Product) => ({
   medium: () => `/images/products/${p.sku}B.jpg`,

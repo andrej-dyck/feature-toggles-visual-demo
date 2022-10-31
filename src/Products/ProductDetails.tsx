@@ -118,13 +118,13 @@ const ProductCard: React.FC<{
 const unescapeHtml = (html: string) => {
   const elem = document.createElement('textarea')
   elem.innerHTML = html
-  return elem.textContent || ''
+  return elem.textContent ?? ''
 }
 
 const OptionsPicker: React.FC<{
   label: string,
   initialValue: string,
-  values: ReadonlyArray<string>,
+  values: readonly string[],
   onChange: (value: string) => void,
 }> = ({ label, initialValue, values, onChange }) =>
   <FormControl variant="standard" sx={{ m: 1, minWidth: 100 }} className="form">

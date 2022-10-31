@@ -56,7 +56,7 @@ const TogglesPanel: React.FC<{
   return (<>
     <Tabs
       value={tabIndex}
-      onChange={(_, i) => changeTabIndex(i)}
+      onChange={(_, i) => changeTabIndex(i as 0 | 1)}
       indicatorColor="secondary"
       textColor="inherit"
       variant="fullWidth"

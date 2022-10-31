@@ -19,7 +19,7 @@ const isActive = (t: Toggle, now: Date, random: () => number): boolean =>
   && mapValueOr(t.condition?.canary?.percentageOfUsers, p => random() < p, true)
 
 const mapValueOr = <V, R>(maybeValue: V | undefined, transform: (v: V) => R, otherwise: R) =>
-  maybeValue ? transform(maybeValue) : otherwise
+  maybeValue !== undefined ? transform(maybeValue) : otherwise
 
 export class Toggles {
 

@@ -5,7 +5,7 @@ export class LocalStorage {
   }
 
   retrieveRecord<T extends Record<string, unknown>>(key: string): T | null {
-    return JSON.parse(localStorage.getItem(key) || 'null')
+    return JSON.parse(localStorage.getItem(key) ?? 'null') as T | null
   }
 
   retrieveOrSave<T extends Record<string, unknown>>(key: string, create: () => T): T {

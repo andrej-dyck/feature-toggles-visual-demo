@@ -6,7 +6,7 @@ export class FakeCatalogStore implements CatalogStore {
     private readonly categories = categoryStubs
   ) {}
 
-  allCategories(): Promise<ReadonlyArray<Category>> {
+  allCategories(): Promise<readonly Category[]> {
     return new Promise(
       resolve => setTimeout(() => resolve(this.categories), this.fakeDelayInMs)
     )
@@ -22,7 +22,7 @@ export class FakeCatalogStore implements CatalogStore {
   }
 }
 
-const categoryStubs: ReadonlyArray<Category> = [{
+const categoryStubs: readonly Category[] = [{
   categoryId: 'mens-outerwear',
   title: 'Men\'s Outerwear',
 }, {

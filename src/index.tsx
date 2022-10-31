@@ -3,11 +3,10 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 
-const root = ReactDOM.createRoot(
+ReactDOM.createRoot(
+  /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
   document.getElementById('root') as HTMLElement
-)
-
-root.render(
+).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>

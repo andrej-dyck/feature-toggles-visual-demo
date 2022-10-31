@@ -22,7 +22,7 @@ export class FakeFeatureTogglesApi implements FeatureTogglesApi {
     this.saveRecord({
       ...record,
       [flag.type]: {
-        ...(record[flag.type] ?? {}),
+        ...record[flag.type],
         [flag.name]: toggle
       }
     })

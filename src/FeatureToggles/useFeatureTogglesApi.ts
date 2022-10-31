@@ -15,8 +15,8 @@ export const useApiSaveToggle = (api: FeatureTogglesApi): {
 
   const queryClient = useQueryClient()
   const { data, status, mutate } = useMutation(saveQuery, {
-    onSuccess: ({ saved }) => {
-      if (saved) queryClient.invalidateQueries(['toggles'])
+    onSuccess: async ({ saved }) => {
+      if (saved) await queryClient.invalidateQueries(['toggles'])
     }
   })
 

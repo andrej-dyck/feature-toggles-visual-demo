@@ -11,7 +11,7 @@ const DiscountBadge: React.FC<{
 
   return (
     <Badge
-      badgeContent={`-${product.discount?.inPercent} %`}
+      badgeContent={`-${product.discount?.inPercent ?? 0} %`}
       anchorOrigin={{ vertical: 'top', horizontal: anchor ?? 'right' }}
       color="success"
     >
