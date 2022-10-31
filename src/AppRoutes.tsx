@@ -47,7 +47,7 @@ const AppRoutes: React.FC<{
     <Route path={appRoutes.cart()} element={
       <React.Suspense fallback={<Loading />}>
         {orderProcessStepsEnabled && <OrderProcessSteps activeStep={0} />}
-        <CartSummary cart={cart} cartActions={cartActions}
+        <CartSummary cart={cart} cartActions={cartActions} orders={orders}
                      showTitle={!orderProcessStepsEnabled}
         />
       </React.Suspense>

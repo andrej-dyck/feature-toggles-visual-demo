@@ -43,14 +43,13 @@ export class FakeFeatureTogglesApi implements FeatureTogglesApi {
 const demoToggles = (): TogglesRecord => ({
   'release-flag': {
     'quick-add-to-cart-button': { enabled: false, condition: {
-      canary: { percentageOfUsers: 0.2 }
+      canary: { percentageOfUsers: 0.3 }
     } },
     'checkout-with-added-item-notification': { enabled: false },
-    'show-order-process-steps': { enabled: false, condition: {
-        canary: { percentageOfUsers: 0.5 }
-     } }
+    'show-order-process-steps': { enabled: true }
   },
   'ops-flag': {
+    'google-pay-button': { enabled: false },
     'black-friday-deals': { enabled: true, condition: {
       startDate: new Date(Date.parse('2022-11-25 00:00:00')),
       endDate: new Date(Date.parse('2022-11-26 00:00:00'))

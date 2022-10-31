@@ -30,6 +30,7 @@ export const releaseFlag = (name: ReleaseFlag['name']): ReleaseFlag => ({ name, 
  * - Retire and remove ops flags as soon as confidence in operations is gained
  */
 export const OpsFlags = [
+  { name: 'google-pay-button' },
   { name: 'black-friday-deals' },
 ] as const
 

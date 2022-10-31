@@ -12,7 +12,10 @@ import Typography from '@mui/material/Typography'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { appRoutes } from '../AppRoutes'
+import { useFeatureToggle } from '../FeatureToggles/FeatureToggles'
+import { opsFlag } from '../FeatureToggles/Flags'
 import ContentTitle from '../Layouts/ContentTitle'
+import { Orders } from '../Orders/Orders'
 import { formatCurrency } from '../Products/Currency'
 import DiscountBadge from '../Products/DiscountBadge'
 import { Product, productImgSrc } from '../Products/ProductStore'
@@ -20,12 +23,14 @@ import { Cart, CartItem, hasItems, isValidItemQuantity, itemPrice } from './Cart
 import { CartActions } from './CartActions'
 import './CartSummary.css'
 import CartTotal from './CartTotal'
+import { GooglePayButton } from './Checkout'
 
 const CartSummary: React.FC<{
   cart: Cart
   cartActions: CartActions
+  orders: Orders
   showTitle?: boolean
-}> = ({ cart, cartActions, showTitle }) => {
+}> = ({ cart, cartActions, orders, showTitle }) => {
   const navigate = useNavigate()
 
   const noOfItems = cart.items.length
@@ -35,6 +40,7 @@ const CartSummary: React.FC<{
     cartActions.changeItemQuantity(item, quantity)
   }
 
+  const { isActive: isGPayActive } = useFeatureToggle(opsFlag('google-pay-button'))
   return (
     <Stack spacing={4} alignItems="center" className="cart-container">
       <Stack spacing={0} alignItems="center">
@@ -54,15 +60,16 @@ const CartSummary: React.FC<{
 
       <CartTotal cart={cart} prefix="Total:" />
 
-      <div className="action-buttons">
-        <Button variant="contained"
+      <Stack className="action-buttons" spacing={1}>
+        <GooglePayButton cart={cart} cartActions={cartActions} orders={orders} />
+        <Button variant={isGPayActive ? 'outlined': 'contained'}
                 startIcon={<ShoppingCartCheckout />}
                 onClick={() => navigate(appRoutes.checkout())}
                 disabled={checkoutDisabled}
         >
           Checkout
         </Button>
-      </div>
+      </Stack>
     </Stack>
   )
 }
