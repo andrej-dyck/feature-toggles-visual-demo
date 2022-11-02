@@ -12,6 +12,7 @@ module.exports = {
   },
   plugins: ['@typescript-eslint'],
   root: true,
+  ignorePatterns: ["*.config.ts"],
   rules: {
     "@typescript-eslint/consistent-type-definitions": "off",
     "@typescript-eslint/no-confusing-void-expression": [

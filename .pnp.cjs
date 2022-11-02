@@ -46,7 +46,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:18.2.0"],\
             ["react-router-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:6.4.2"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"],\
-            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"]\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"],\
+            ["vite-plugin-eslint", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:1.8.1"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -1215,6 +1216,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@rollup/pluginutils", [\
+        ["npm:4.2.1", {\
+          "packageLocation": "./.yarn/cache/@rollup-pluginutils-npm-4.2.1-0f52a5eba2-6bc41f22b1.zip/node_modules/@rollup/pluginutils/",\
+          "packageDependencies": [\
+            ["@rollup/pluginutils", "npm:4.2.1"],\
+            ["estree-walker", "npm:2.0.2"],\
+            ["picomatch", "npm:2.3.1"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@tanstack/query-core", [\
         ["npm:4.13.0", {\
           "packageLocation": "./.yarn/cache/@tanstack-query-core-npm-4.13.0-9287d11251-11cb95be4d.zip/node_modules/@tanstack/query-core/",\
@@ -1261,6 +1273,26 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@tootallnate-once-npm-2.0.0-e36cf4f140-ad87447820.zip/node_modules/@tootallnate/once/",\
           "packageDependencies": [\
             ["@tootallnate/once", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/eslint", [\
+        ["npm:8.4.9", {\
+          "packageLocation": "./.yarn/cache/@types-eslint-npm-8.4.9-96e7d24b94-9eda34e000.zip/node_modules/@types/eslint/",\
+          "packageDependencies": [\
+            ["@types/eslint", "npm:8.4.9"],\
+            ["@types/estree", "npm:1.0.0"],\
+            ["@types/json-schema", "npm:7.0.11"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["@types/estree", [\
+        ["npm:1.0.0", {\
+          "packageLocation": "./.yarn/cache/@types-estree-npm-1.0.0-eddde5b631-910d97fb70.zip/node_modules/@types/estree/",\
+          "packageDependencies": [\
+            ["@types/estree", "npm:1.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -2580,6 +2612,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["estree-walker", [\
+        ["npm:2.0.2", {\
+          "packageLocation": "./.yarn/cache/estree-walker-npm-2.0.2-dfab42f65c-6151e6f982.zip/node_modules/estree-walker/",\
+          "packageDependencies": [\
+            ["estree-walker", "npm:2.0.2"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["esutils", [\
         ["npm:2.0.3", {\
           "packageLocation": "./.yarn/cache/esutils-npm-2.0.3-f865beafd5-22b5b08f74.zip/node_modules/esutils/",\
@@ -2663,7 +2704,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:18.2.0"],\
             ["react-router-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:6.4.2"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"],\
-            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"]\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"],\
+            ["vite-plugin-eslint", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:1.8.1"]\
           ],\
           "linkType": "SOFT"\
         }]\
@@ -4483,6 +4525,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "stylus",\
             "sugarss",\
             "terser"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["vite-plugin-eslint", [\
+        ["npm:1.8.1", {\
+          "packageLocation": "./.yarn/cache/vite-plugin-eslint-npm-1.8.1-844ad445f5-65598893e2.zip/node_modules/vite-plugin-eslint/",\
+          "packageDependencies": [\
+            ["vite-plugin-eslint", "npm:1.8.1"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:1.8.1", {\
+          "packageLocation": "./.yarn/__virtual__/vite-plugin-eslint-virtual-9e82e98eee/0/cache/vite-plugin-eslint-npm-1.8.1-844ad445f5-65598893e2.zip/node_modules/vite-plugin-eslint/",\
+          "packageDependencies": [\
+            ["vite-plugin-eslint", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:1.8.1"],\
+            ["@rollup/pluginutils", "npm:4.2.1"],\
+            ["@types/eslint", "npm:8.4.9"],\
+            ["@types/vite", null],\
+            ["eslint", "npm:8.21.0"],\
+            ["rollup", "npm:2.79.1"],\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/vite",\
+            "eslint",\
+            "vite"\
           ],\
           "linkType": "HARD"\
         }]\
