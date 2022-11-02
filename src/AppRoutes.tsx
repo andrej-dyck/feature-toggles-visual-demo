@@ -27,56 +27,62 @@ const AppRoutes: React.FC<{
 }> = ({ catalogStore, productStore, cart, cartActions, orders }) => {
   const { isActive: orderProcessStepsEnabled } = useFeatureToggle(releaseFlag('show-order-process-steps'))
 
-  return <Routes>
-    <Route path={appRoutes.root} element={
-      <React.Suspense fallback={<Loading />}>
-        <Catalog store={catalogStore} />
-      </React.Suspense>
-    } />
-    <Route path={appRoutes.category()} element={
-      <React.Suspense fallback={<Loading />}>
-        <CategoryTitle store={catalogStore} />
-        <ListCategory store={productStore} cartActions={cartActions} />
-      </React.Suspense>
-    } />
-    <Route path={appRoutes.product()} element={
-      <React.Suspense fallback={<Loading />}>
-        <ProductDetails store={productStore} cartActions={cartActions} />
-      </React.Suspense>
-    } />
-    <Route path={appRoutes.cart()} element={
-      <React.Suspense fallback={<Loading />}>
-        {orderProcessStepsEnabled && <OrderProcessSteps activeStep={0} />}
-        <CartSummary cart={cart} cartActions={cartActions} orders={orders}
-                     showTitle={!orderProcessStepsEnabled}
-        />
-      </React.Suspense>
-    } />
-    <Route path={appRoutes.checkout()} element={
-      <React.Suspense fallback={<Loading />}>
-        {orderProcessStepsEnabled && <OrderProcessSteps activeStep={1} />}
-        <Checkout cart={cart} cartActions={cartActions} orders={orders}
-                  showTitle={!orderProcessStepsEnabled}
-        />
-      </React.Suspense>
-    } />
-    <Route path={appRoutes.orderConfirmation()} element={
-      <React.Suspense fallback={<Loading />}>
-        {orderProcessStepsEnabled && <OrderProcessSteps activeStep={2} />}
-        <Confirmation />
-      </React.Suspense>
-    } />
-  </Routes>
+  return (
+    <Routes>
+      <Route path={appRoutes.root} element={
+        <React.Suspense fallback={<Loading />}>
+          <Catalog store={catalogStore} />
+        </React.Suspense>
+      } />
+      <Route path={appRoutes.category()} element={
+        <React.Suspense fallback={<Loading />}>
+          <CategoryTitle store={catalogStore} />
+          <ListCategory store={productStore} cartActions={cartActions} />
+        </React.Suspense>
+      } />
+      <Route path={appRoutes.product()} element={
+        <React.Suspense fallback={<Loading />}>
+          <ProductDetails store={productStore} cartActions={cartActions} />
+        </React.Suspense>
+      } />
+      <Route path={appRoutes.cart()} element={
+        <React.Suspense fallback={<Loading />}>
+          {orderProcessStepsEnabled && <OrderProcessSteps activeStep={0} />}
+          <CartSummary cart={cart} cartActions={cartActions} orders={orders}
+                       showTitle={!orderProcessStepsEnabled}
+          />
+        </React.Suspense>
+      } />
+      <Route path={appRoutes.checkout()} element={
+        <React.Suspense fallback={<Loading />}>
+          {orderProcessStepsEnabled && <OrderProcessSteps activeStep={1} />}
+          <Checkout cart={cart} cartActions={cartActions} orders={orders}
+                    showTitle={!orderProcessStepsEnabled}
+          />
+        </React.Suspense>
+      } />
+      <Route path={appRoutes.orderConfirmation()} element={
+        <React.Suspense fallback={<Loading />}>
+          {orderProcessStepsEnabled && <OrderProcessSteps activeStep={2} />}
+          <Confirmation />
+        </React.Suspense>
+      } />
+    </Routes>
+  )
 }
 
+const basepath = '/feature-toggles-visual-demo'
+
 export const appRoutes = {
-  root: '/',
-  category: (categoryId = ':categoryId') => `/categories/${categoryId}`,
-  product: (sku = ':sku') => `/products/${sku}`,
-  cart: () => `/cart`,
-  checkout: () => `/checkout`,
-  orderConfirmation: (orderId = ':orderId') => `/confirm/${orderId}`
+  root: `${basepath}/`,
+  category: (categoryId = ':categoryId') => `${basepath}/categories/${categoryId}`,
+  product: (sku = ':sku') => `${basepath}/products/${sku}`,
+  cart: () => `${basepath}/cart`,
+  checkout: () => `${basepath}/checkout`,
+  orderConfirmation: (orderId = ':orderId') => `${basepath}/confirm/${orderId}`
 } as const
+
+export const images = (path: string) => `${basepath}/images/${path}`
 
 const Loading: React.FC = () =>
   <CircularProgress color="primary" className="centered" />

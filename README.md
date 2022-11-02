@@ -1,6 +1,7 @@
 # Feature Toggles Visual Demo
 
 ![Build](https://github.com/andrej-dyck/feature-toggles-visual-demo/actions/workflows/build.yml/badge.svg)
+![GitHub Pages](https://github.com/andrej-dyck/feature-toggles-visual-demo/actions/workflows/deploy-gh-pages.yml/badge.svg)
 
 [Feature Toggles](https://www.martinfowler.com/articles/feature-toggles.html) are a powerful tool for development teams (including business persons) to deliver functionality quickly and safely, by decoupling code deployment from feature deployment.
 
@@ -20,6 +21,8 @@ You can find more information about feature toggles in the subsequent sections a
 
 This demo is intended as a presentation for non-developers to visualize how features toggles help development teams decouple code deployment from feature deployment.
 
+[You can try the demo here](https://andrej-dyck.github.io/feature-toggles-visual-demo/).
+
 ![shop-start.png](readme-assets/shop-start.png)
 ![shop-release-toggles.png](readme-assets/shop-release-toggles.png)
 ![shop-ops-toggles.png](readme-assets/shop-ops-toggles.png)
@@ -34,7 +37,7 @@ git clone https://github.com/andrej-dyck/feature-toggles-visual-demo.git \
  && yarn preview
 ```
 
-Then open [http://localhost:8080/]()
+Then open [http://localhost:8080/feature-toggles-visual-demo/]()
 
 ## 🎓 For Developers and Inquiring Minds
 

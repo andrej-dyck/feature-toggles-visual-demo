@@ -1,6 +1,7 @@
 .product-layout-container {
   max-width: 1000px;
-  margin: 0 auto;
+  /* I couldn't find out why on GitHub pages there was a margin-top/left: -16px 🤷‍♂️ */
+  margin: 0 auto !important;
 }
 
 .product-layout-container .image-container {

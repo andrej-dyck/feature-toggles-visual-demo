@@ -1,3 +1,4 @@
+import { images } from '../AppRoutes'
 import { applyDiscount, Currency } from './Currency'
 
 export interface ProductStore {
@@ -19,8 +20,8 @@ export const hasDiscount = ({ discount }: Pick<Product, 'discount'>) =>
   !!discount && discount.inPercent > 0
 
 export const productImgSrc = (p: Product) => ({
-  medium: () => `/images/products/${p.sku}B.jpg`,
-  large: () => `/images/products/${p.sku}A.jpg`
+  medium: () => images(`products/${p.sku}B.jpg`),
+  large: () => images(`products/${p.sku}A.jpg`)
 })
 
 export type DetailedProduct = Product & Readonly<{

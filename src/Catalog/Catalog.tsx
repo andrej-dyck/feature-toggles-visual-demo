@@ -4,7 +4,7 @@ import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { appRoutes } from '../AppRoutes'
+import { appRoutes, images } from '../AppRoutes'
 import GridLayout from '../Layouts/GridLayout'
 import GridSkeleton from '../Layouts/GridSkeleton'
 import './Catalog.css'
@@ -44,6 +44,6 @@ const CategoryCard: React.FC<{ category: Category }> = ({ category }) =>
     </Card>
   </Link>
 
-const categoryImgSrc = (category: Category) => `images/catalog/${category.categoryId}.jpg`
+const categoryImgSrc = (category: Category) => images(`catalog/${category.categoryId}.jpg`)
 
 export default Catalog
