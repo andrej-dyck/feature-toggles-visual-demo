@@ -1,5 +1,7 @@
 # Feature Toggles Visual Demo
 
+![Build](https://github.com/andrej-dyck/feature-toggles-visual-demo/actions/workflows/build.yml/badge.svg)
+
 [Feature Toggles](https://www.martinfowler.com/articles/feature-toggles.html) are a powerful tool for development teams (including business persons) to deliver functionality quickly and safely, by decoupling code deployment from feature deployment.
 
 > Feature Toggles decouple code deployment from feature deployment; thus, enabling true Continuous Delivery.
