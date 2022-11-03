@@ -48,6 +48,7 @@ const demoToggles = (): TogglesRecord => ({
     'checkout-with-added-item-notification': { enabled: false },
     'show-order-process-steps': { enabled: true },
     'wip-favorites-feature': { enabled: false },
+    'buggy-product-recommendations': { enabled: true }
   },
   'ops-flag': {
     'google-pay-button': { enabled: false },

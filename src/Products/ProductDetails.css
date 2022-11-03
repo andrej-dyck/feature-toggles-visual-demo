@@ -1,6 +1,6 @@
 .product-layout-container {
   max-width: 1000px;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .product-layout-container .image-container {

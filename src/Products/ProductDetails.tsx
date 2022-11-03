@@ -15,6 +15,7 @@ import { formatCurrency } from './Currency'
 import DiscountBadge from './DiscountBadge'
 import './ProductDetails.css'
 import { DetailedProduct, Product, productImgSrc, productPrice, ProductStore, useProduct } from './ProductStore'
+import Recommendations from './Recommendations'
 import { availableSizes, Size } from './Size'
 
 const ProductDetails: React.FC<{
@@ -30,7 +31,10 @@ const ProductDetails: React.FC<{
   if (status === 'success' && !!product) return (
     <ProductLayout
       image={<img src={productImgSrc(product).large()} alt={product.title} />}
-      product={<ProductCard product={product} addToCart={addToCart} />}
+      product={<>
+        <ProductCard product={product} addToCart={addToCart} />
+        <Recommendations sku={sku} />
+      </>}
     />
   )
 

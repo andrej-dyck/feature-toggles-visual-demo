@@ -16,6 +16,7 @@ export const ReleaseFlags = [
   { name: 'checkout-with-added-item-notification' },
   { name: 'show-order-process-steps' },
   { name: 'wip-favorites-feature' },
+  { name: 'buggy-product-recommendations' },
 ] as const
 
 export type ReleaseFlag = typeof ReleaseFlags[number] & { type: 'release-flag' }
