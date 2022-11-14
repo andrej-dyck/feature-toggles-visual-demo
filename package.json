@@ -9,12 +9,12 @@
     "preview": "vite preview --port 8080"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/icons-material": "^5.10.9",
-    "@mui/lab": "^5.0.0-alpha.105",
-    "@mui/material": "^5.10.10",
-    "@tanstack/react-query": "^4.13.0",
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
+    "@mui/icons-material": "5.10.9",
+    "@mui/lab": "5.0.0-alpha.105",
+    "@mui/material": "5.10.13",
+    "@tanstack/react-query": "4.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-router-dom": "6.4.2"
@@ -26,10 +26,10 @@
     "@types/react-router-dom": "5.3.3",
     "@typescript-eslint/eslint-plugin": "5.40.1",
     "@typescript-eslint/parser": "5.40.1",
-    "@vitejs/plugin-react": "^2.2.0",
+    "@vitejs/plugin-react": "2.2.0",
     "eslint": "8.21.0",
-    "typescript": "^4.8.4",
-    "vite": "^3.2.0",
-    "vite-plugin-eslint": "^1.8.1"
+    "typescript": "4.8.4",
+    "vite": "3.2.0",
+    "vite-plugin-eslint": "1.8.1"
   }
 }

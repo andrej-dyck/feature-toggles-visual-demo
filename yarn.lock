@@ -382,7 +382,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.10.4":
+"@emotion/react@npm:11.10.4":
   version: 11.10.4
   resolution: "@emotion/react@npm:11.10.4"
   dependencies:
@@ -426,7 +426,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:^11.10.4":
+"@emotion/styled@npm:11.10.4":
   version: 11.10.4
   resolution: "@emotion/styled@npm:11.10.4"
   dependencies:
@@ -617,14 +617,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/core-downloads-tracker@npm:^5.10.11":
-  version: 5.10.11
-  resolution: "@mui/core-downloads-tracker@npm:5.10.11"
-  checksum: 16a1cab20098e55bb217fdbf20fe18e56a3f52ef0daef74f9f078cebf1b2e47906e28f707f70b8d6132bca2b0a56d9a9870364ea1dfce89c53567f30af9205ce
+"@mui/base@npm:5.0.0-alpha.105":
+  version: 5.0.0-alpha.105
+  resolution: "@mui/base@npm:5.0.0-alpha.105"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@emotion/is-prop-valid": ^1.2.0
+    "@mui/types": ^7.2.0
+    "@mui/utils": ^5.10.9
+    "@popperjs/core": ^2.11.6
+    clsx: ^1.2.1
+    prop-types: ^15.8.1
+    react-is: ^18.2.0
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 1db3dcd6760c814437c679ddf13d9e3c4e7fc6f51ce933445715a56aa65dcaeb38aff35832c524211d62fb3401b436cbcc3e9e4234068a0c3379da727f44cff2
   languageName: node
   linkType: hard
 
-"@mui/icons-material@npm:^5.10.9":
+"@mui/core-downloads-tracker@npm:^5.10.13":
+  version: 5.10.13
+  resolution: "@mui/core-downloads-tracker@npm:5.10.13"
+  checksum: 175d5779e8e4b6130c96d2ce990047ea58571f847a7041ca273564edc5411456296d1e094e350970d1294c4cc4d8459ea237f69e7917926a6530d5195fb41cc6
+  languageName: node
+  linkType: hard
+
+"@mui/icons-material@npm:5.10.9":
   version: 5.10.9
   resolution: "@mui/icons-material@npm:5.10.9"
   dependencies:
@@ -640,7 +663,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/lab@npm:^5.0.0-alpha.105":
+"@mui/lab@npm:5.0.0-alpha.105":
   version: 5.0.0-alpha.105
   resolution: "@mui/lab@npm:5.0.0-alpha.105"
   dependencies:
@@ -670,14 +693,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/material@npm:^5.10.10":
-  version: 5.10.11
-  resolution: "@mui/material@npm:5.10.11"
+"@mui/material@npm:5.10.13":
+  version: 5.10.13
+  resolution: "@mui/material@npm:5.10.13"
   dependencies:
     "@babel/runtime": ^7.19.0
-    "@mui/base": 5.0.0-alpha.103
-    "@mui/core-downloads-tracker": ^5.10.11
-    "@mui/system": ^5.10.10
+    "@mui/base": 5.0.0-alpha.105
+    "@mui/core-downloads-tracker": ^5.10.13
+    "@mui/system": ^5.10.13
     "@mui/types": ^7.2.0
     "@mui/utils": ^5.10.9
     "@types/react-transition-group": ^4.4.5
@@ -699,7 +722,7 @@ __metadata:
       optional: true
     "@types/react":
       optional: true
-  checksum: 208312fc063ccdfad393e0e86f1d22d1e8e45fdcf6ba9ce5e0914211944f7dec04a2784d04f728f6014d3fe17b1b102e0279a51d9cf94147c45520c662f3be40
+  checksum: 817e61e575a47b60cba54f826e8a090399f9332b192e2632efa9f82ae6bc44653fe6ab3606c047c29686a5b4ee3ec7bbd69b89c9a0dd6ca1e382aff23c0e5c96
   languageName: node
   linkType: hard
 
@@ -766,6 +789,34 @@ __metadata:
     "@types/react":
       optional: true
   checksum: a2cb5bcc8e3a07038672f955d8352d3fa7a6239665efac3c7b4adf59fa64dc258b844f2decb0db3dd378b9fc0e0ca856ec5172e077702ff94e3a635b6ca8c462
+  languageName: node
+  linkType: hard
+
+"@mui/system@npm:^5.10.13":
+  version: 5.10.13
+  resolution: "@mui/system@npm:5.10.13"
+  dependencies:
+    "@babel/runtime": ^7.19.0
+    "@mui/private-theming": ^5.10.9
+    "@mui/styled-engine": ^5.10.8
+    "@mui/types": ^7.2.0
+    "@mui/utils": ^5.10.9
+    clsx: ^1.2.1
+    csstype: ^3.1.1
+    prop-types: ^15.8.1
+  peerDependencies:
+    "@emotion/react": ^11.5.0
+    "@emotion/styled": ^11.3.0
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/react":
+      optional: true
+    "@emotion/styled":
+      optional: true
+    "@types/react":
+      optional: true
+  checksum: afac3f4859b9e137fa62fa4446642909704964209a44f63a472d452ace6428a0b337b48a934cd805e3728a0098ad4f41fedbc06ce14e245a5fa42fabe349d9e8
   languageName: node
   linkType: hard
 
@@ -874,7 +925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^4.13.0":
+"@tanstack/react-query@npm:4.13.0":
   version: 4.13.0
   resolution: "@tanstack/react-query@npm:4.13.0"
   dependencies:
@@ -1155,7 +1206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vitejs/plugin-react@npm:^2.2.0":
+"@vitejs/plugin-react@npm:2.2.0":
   version: 2.2.0
   resolution: "@vitejs/plugin-react@npm:2.2.0"
   dependencies:
@@ -2073,26 +2124,26 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "feature-toggles-visual-demo@workspace:."
   dependencies:
-    "@emotion/react": ^11.10.4
-    "@emotion/styled": ^11.10.4
-    "@mui/icons-material": ^5.10.9
-    "@mui/lab": ^5.0.0-alpha.105
-    "@mui/material": ^5.10.10
-    "@tanstack/react-query": ^4.13.0
+    "@emotion/react": 11.10.4
+    "@emotion/styled": 11.10.4
+    "@mui/icons-material": 5.10.9
+    "@mui/lab": 5.0.0-alpha.105
+    "@mui/material": 5.10.13
+    "@tanstack/react-query": 4.13.0
     "@types/node": 16.11.68
     "@types/react": 18.0.21
     "@types/react-dom": 18.0.6
     "@types/react-router-dom": 5.3.3
     "@typescript-eslint/eslint-plugin": 5.40.1
     "@typescript-eslint/parser": 5.40.1
-    "@vitejs/plugin-react": ^2.2.0
+    "@vitejs/plugin-react": 2.2.0
     eslint: 8.21.0
     react: 18.2.0
     react-dom: 18.2.0
     react-router-dom: 6.4.2
-    typescript: ^4.8.4
-    vite: ^3.2.0
-    vite-plugin-eslint: ^1.8.1
+    typescript: 4.8.4
+    vite: 3.2.0
+    vite-plugin-eslint: 1.8.1
   languageName: unknown
   linkType: soft
 
@@ -3518,7 +3569,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.8.4":
+"typescript@npm:4.8.4":
   version: 4.8.4
   resolution: "typescript@npm:4.8.4"
   bin:
@@ -3528,7 +3579,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.8.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@4.8.4#~builtin<compat/typescript>":
   version: 4.8.4
   resolution: "typescript@patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"
   bin:
@@ -3602,7 +3653,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-plugin-eslint@npm:^1.8.1":
+"vite-plugin-eslint@npm:1.8.1":
   version: 1.8.1
   resolution: "vite-plugin-eslint@npm:1.8.1"
   dependencies:
@@ -3616,7 +3667,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^3.2.0":
+"vite@npm:3.2.0":
   version: 3.2.0
   resolution: "vite@npm:3.2.0"
   dependencies:
