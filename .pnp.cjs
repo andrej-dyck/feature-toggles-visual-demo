@@ -46,7 +46,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:18.2.0"],\
             ["react-router-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:6.4.2"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"],\
-            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"],\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.7"],\
             ["vite-plugin-eslint", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:1.8.1"]\
           ],\
           "linkType": "SOFT"\
@@ -1731,7 +1731,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/vite", null],\
             ["magic-string", "npm:0.26.7"],\
             ["react-refresh", "npm:0.14.0"],\
-            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"]\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.7"]\
           ],\
           "packagePeers": [\
             "@types/vite",\
@@ -2772,7 +2772,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:18.2.0"],\
             ["react-router-dom", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:6.4.2"],\
             ["typescript", "patch:typescript@npm%3A4.8.4#~builtin<compat/typescript>::version=4.8.4&hash=701156"],\
-            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"],\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.7"],\
             ["vite-plugin-eslint", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:1.8.1"]\
           ],\
           "linkType": "SOFT"\
@@ -4555,18 +4555,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["vite", [\
-        ["npm:3.2.0", {\
-          "packageLocation": "./.yarn/cache/vite-npm-3.2.0-8a4dc272ca-2b3acfe745.zip/node_modules/vite/",\
+        ["npm:3.2.7", {\
+          "packageLocation": "./.yarn/cache/vite-npm-3.2.7-dc0dc30c5d-4c5883b721.zip/node_modules/vite/",\
           "packageDependencies": [\
-            ["vite", "npm:3.2.0"]\
+            ["vite", "npm:3.2.7"]\
           ],\
           "linkType": "SOFT"\
         }],\
-        ["virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0", {\
-          "packageLocation": "./.yarn/__virtual__/vite-virtual-90ad72455e/0/cache/vite-npm-3.2.0-8a4dc272ca-2b3acfe745.zip/node_modules/vite/",\
+        ["virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.7", {\
+          "packageLocation": "./.yarn/__virtual__/vite-virtual-df7a1e985e/0/cache/vite-npm-3.2.7-dc0dc30c5d-4c5883b721.zip/node_modules/vite/",\
           "packageDependencies": [\
-            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"],\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.7"],\
             ["@types/less", null],\
+            ["@types/node", "npm:16.11.68"],\
             ["@types/sass", null],\
             ["@types/stylus", null],\
             ["@types/sugarss", null],\
@@ -4584,6 +4585,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],\
           "packagePeers": [\
             "@types/less",\
+            "@types/node",\
             "@types/sass",\
             "@types/stylus",\
             "@types/sugarss",\
@@ -4614,7 +4616,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/vite", null],\
             ["eslint", "npm:8.21.0"],\
             ["rollup", "npm:2.79.1"],\
-            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.0"]\
+            ["vite", "virtual:051cdd8f0d0e0971375af689eb33f44ef540db6241c8b0407f8e9b32c0b3b9f3e25c77b233d4fa156797af483f9f59827fd07a76debb41882c1c75b8bda60c33#npm:3.2.7"]\
           ],\
           "packagePeers": [\
             "@types/vite",\
